@@ -13,8 +13,8 @@ export const config = {
   plannedMinutes: 14.5,
   bufferMinutes: 0.5,
   contact: {
-    phone: '0-0000-0000',
-    email: 'pharmacy@hospital.go.th',
+    phone: '036-776240 ต่อ 225',
+    email: 'pharmacist.sabot101@gmail.com',
   },
   /* แสดงป้าย "ข้อมูลตัวอย่าง" ในสไลด์ที่อ้างอิงตัวเลข KPI
      ปัจจุบันใช้ข้อมูลจริงจากรายงานของโรงพยาบาลแล้ว จึงปิดป้ายไว้ */
