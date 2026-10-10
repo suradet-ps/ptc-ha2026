@@ -78,12 +78,12 @@ const series = [
           <p class="saf__medrec-title">
             <Icon name="refresh" :size="16" />
             แผนภาพ Medication Reconciliation
+            <span class="saf__medrec-note">ผู้ป่วยในทุกราย</span>
           </p>
           <div class="saf__medrec-flow">
             <template v-for="(node, i) in medRecNodes" :key="node">
               <div class="saf__medrec-node">
                 <b>{{ node }}</b>
-                <span>ผู้ป่วยในทุกราย</span>
               </div>
               <Icon v-if="i < medRecNodes.length - 1" name="arrow-right" :size="18" class="saf__medrec-arrow" />
             </template>
@@ -190,20 +190,20 @@ const series = [
   background: #ffffff;
   border: 1px solid var(--line);
   border-radius: 10px;
-  padding: 8px 6px;
+  padding: 10px 6px;
 }
 
 .saf__medrec-node b {
-  display: block;
   font-size: 13.5px;
   font-weight: 600;
   color: var(--ink-strong);
 }
 
-.saf__medrec-node span {
+.saf__medrec-note {
+  margin-left: auto;
   font-size: 12px;
-  color: var(--ok);
   font-weight: 500;
+  color: var(--ok);
 }
 
 .saf__medrec-arrow {

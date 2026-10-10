@@ -97,7 +97,7 @@ const stats = [
 
         <p class="sel__app-caption">
           <Icon name="layers" :size="14" />
-          DrugLists · Web App บริหารบัญชียา จัดการข้อมูลยา ราคา และสถานะการใช้งานแบบ Real-time
+          DrugLists · Web App บริหารบัญชียา ราคา และสถานะการใช้งาน Real-time
         </p>
       </div>
     </div>

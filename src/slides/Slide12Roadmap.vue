@@ -18,7 +18,7 @@ const phases: readonly Phase[] = [
     label: 'ระยะที่ 1 · ทีมและแนวปฏิบัติ',
     icon: 'users',
     items: [
-      'แต่งตั้งทีมความปลอดภัยด้านยา (Med Safety Committee)',
+      'แต่งตั้งทีมความปลอดภัยด้านยา',
       'แนวปฏิบัติจ่ายยานอกเวลา + Double check',
       'ทบทวนบัญชียาฉุกเฉิน/ยาเสพติด สต๊อก ≥ 95%',
     ],
@@ -87,11 +87,11 @@ const phases: readonly Phase[] = [
       </span>
       <span class="road__foot-item">
         <Icon name="calendar-check" :size="15" />
-        ติดตามผลและทบทวนแนวทางทุก 6 เดือน
+        ทบทวนความก้าวหน้าทุก 6 เดือน
       </span>
       <span class="road__foot-item">
         <Icon name="folder" :size="15" />
-        อ้างอิง: แผน CQI · แผนยุทธศาสตร์ระบบยา · แผนงบประมาณ
+        อ้างอิง: แผน CQI · แผนยุทธศาสตร์ · แผนงบประมาณ
       </span>
     </div>
   </SlideLayout>

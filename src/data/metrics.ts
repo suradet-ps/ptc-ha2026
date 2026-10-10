@@ -50,7 +50,7 @@ export const rdu = {
       value: '73% · เป้า > 80',
     },
   ],
-  failedDetail: 'อยู่ระหว่างทบทวนแนวทางสั่งใช้ยาและกำกับติดตามผลผ่าน HDC ให้ผ่านเกณฑ์ทุกข้อ',
+  failedDetail: 'อยู่ระหว่างทบทวนแนวทางสั่งใช้ยาและติดตามผลผ่าน HDC',
 }
 
 export const drugInventory = {

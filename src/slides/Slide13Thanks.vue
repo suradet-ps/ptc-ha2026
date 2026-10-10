@@ -22,7 +22,7 @@ const evidence = [
       <div class="thanks__left">
         <p class="thanks__kicker anim anim-1">Thank You &amp; Q&amp;A</p>
         <h1 class="thanks__headline anim anim-2">
-          ขอบคุณครับ/ค่ะ
+          ขอบคุณครับ
           <span class="thanks__rule" />
         </h1>
         <p class="thanks__sub anim anim-3">
