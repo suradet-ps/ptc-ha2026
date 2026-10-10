@@ -128,7 +128,7 @@ const trendIcon = { down: 'trend-down', up: 'trend-up', flat: 'trend-flat' } as 
           <span class="icon-badge icon-badge--ok"><Icon name="shield" :size="18" /></span>
           <div>
             <p class="kpi__stat-value">{{ safetyResults.levelEUp }} <span>ครั้ง</span></p>
-            <p class="kpi__stat-label">ME ระดับ E ขึ้นไป ต่อเนื่อง 5 ปี</p>
+            <p class="kpi__stat-label">ME ระดับ E ขึ้นไป · 5 ปีต่อเนื่อง</p>
           </div>
         </div>
 
@@ -136,7 +136,7 @@ const trendIcon = { down: 'trend-down', up: 'trend-up', flat: 'trend-flat' } as 
           <span class="icon-badge icon-badge--ok"><Icon name="check-circle" :size="18" /></span>
           <div>
             <p class="kpi__stat-value">{{ safetyResults.repeatedAllergy }} <span>ครั้ง</span></p>
-            <p class="kpi__stat-label">อุบัติการณ์การแพ้ยาซ้ำ</p>
+            <p class="kpi__stat-label">การแพ้ยาซ้ำ</p>
           </div>
         </div>
       </div>

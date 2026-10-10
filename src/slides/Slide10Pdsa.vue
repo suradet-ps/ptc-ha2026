@@ -8,25 +8,25 @@ const steps = [
   {
     key: 'P',
     title: 'Plan',
-    detail: 'Transcribing error เกิดจากการคัดลอกคำสั่งด้วยมือและใช้ Copy order ของพยาบาล',
+    detail: 'คัดลอกคำสั่งด้วยมือ + Copy order ทำให้เกิด error',
     tone: 'p',
   },
   {
     key: 'D',
     title: 'Do',
-    detail: 'ยกเลิก Copy order เปลี่ยนเป็น Scan order และให้เภสัชกรคัดลอกคำสั่งแทน',
+    detail: 'ยกเลิก Copy order ใช้ Scan order + เภสัชกรคัดลอกคำสั่ง',
     tone: 'd',
   },
   {
     key: 'C',
     title: 'Check',
-    detail: 'Transcribing error ผู้ป่วยในลดจาก 0.42 เหลือ 0.03 ต่อพันวันนอน (ลดลง 93%)',
+    detail: 'IPD 0.42 → 0.03 ต่อพันวันนอน (ลด 93%)',
     tone: 'c',
   },
   {
     key: 'A',
     title: 'Act',
-    detail: 'กำหนดเป็นแนวปฏิบัติถาวรทั้ง OPD และ IPD พร้อมต่อยอดแจ้งเตือนอัตโนมัติใน HosXp v4',
+    detail: 'กำหนดเป็นแนวปฏิบัติถาวร + แจ้งเตือนอัตโนมัติใน HosXp v4',
     tone: 'a',
   },
 ]
@@ -76,11 +76,10 @@ const bars = [
         </p>
         <ul class="pdsa__result-list">
           <li>
-            <Icon name="check" :size="14" />ผู้ป่วยนอกก็ลดเช่นกัน: {{ pdsaTranscribing.opdBefore }} เหลือ
-            {{ pdsaTranscribing.opdAfter }} ต่อพันใบสั่งยา
+            <Icon name="check" :size="14" />OPD ลดด้วย: {{ pdsaTranscribing.opdBefore }} → {{ pdsaTranscribing.opdAfter }} ต่อพันใบสั่งยา
           </li>
-          <li><Icon name="check" :size="14" />เภสัชกรเห็นคำสั่งแพทย์ชัดเจนจาก Scan order ทุกคำสั่ง</li>
-          <li><Icon name="check" :size="14" />กำหนดเป็นแนวปฏิบัติถาวรและติดตามต่อเนื่องผ่าน PTC</li>
+          <li><Icon name="check" :size="14" />เภสัชกรเห็นคำสั่งชัดเจนทุกคำสั่ง</li>
+          <li><Icon name="check" :size="14" />ติดตามต่อเนื่องผ่าน PTC</li>
         </ul>
         <div class="pdsa__evidence">
           <span class="chip chip--muted"><Icon name="folder" :size="13" />รายงาน RCA</span>

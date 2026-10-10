@@ -7,35 +7,35 @@ const features: readonly { icon: IconName; title: string; detail: string }[] = [
   {
     icon: 'monitor',
     title: 'HosXp Drug Alert',
-    detail: 'เตือนข้อควรระวังและข้อห้ามใช้: G6PD ตั้งครรภ์ Warfarin',
+    detail: 'เตือนข้อห้ามใช้: G6PD · ตั้งครรภ์ · Warfarin',
   },
   {
     icon: 'layers',
     title: 'แพทย์คีย์คำสั่งเอง (OPD)',
-    detail: 'ลดความคลาดเคลื่อนจากการถ่ายทอดคำสั่ง',
+    detail: 'ลด error จากการถ่ายทอดคำสั่ง',
   },
   {
     icon: 'barcode',
     title: 'Scan Order (IPD)',
-    detail: 'เภสัชกรเห็นคำสั่งแพทย์ชัดเจนก่อนจ่ายยาทุกครั้ง',
+    detail: 'เภสัชกรเห็นคำสั่งชัดเจนก่อนจ่ายยา',
   },
   {
     icon: 'user-check',
     title: 'ตรวจสอบผู้ป่วยด้วยรูปถ่าย',
-    detail: 'ยืนยันชื่อ-สกุลก่อนจ่ายยา ลดการจ่ายยาผิดคน',
+    detail: 'ยืนยันชื่อ-สกุล ลดจ่ายยาผิดคน',
   },
   {
     icon: 'check-circle',
     title: 'สติ๊กเกอร์ยาจากเภสัชกร',
-    detail: 'แทนการคัดลอกด้วยลายมือ ลด transcribing error',
+    detail: 'แทนการคัดลอกลายมือ ลด transcribing',
   },
 ]
 
 const planItems = [
   { icon: 'bot' as const, label: 'AI-Assisted Drug Alert', target: '≥ 80%' },
-  { icon: 'flask' as const, label: 'Online ADR Reporting System', target: '+30%' },
+  { icon: 'flask' as const, label: 'Online ADR Reporting', target: '+30%' },
   { icon: 'clipboard-check' as const, label: 'Electronic Med Rec (EMR)', target: '≥ 95%' },
-  { icon: 'refresh' as const, label: 'อัปเกรด HosXp v4 แจ้งเตือน Scan อัตโนมัติ', target: 'ตามแผน' },
+  { icon: 'refresh' as const, label: 'HosXp v4 แจ้งเตือน Scan อัตโนมัติ', target: 'ตามแผน' },
 ]
 </script>
 
@@ -68,20 +68,20 @@ const planItems = [
             <Icon name="alert" :size="20" />
             <div>
               <p class="dig__alert-title">ผู้ป่วยตั้งครรภ์: แจ้งเตือนยา Category X</p>
-              <p class="dig__alert-sub">พร้อมเตือนข้อห้ามใช้ใน G6PD และผู้ป่วยที่ใช้ Warfarin</p>
+              <p class="dig__alert-sub">เตือนข้อห้ามใช้ G6PD · ตั้งครรภ์ · Warfarin</p>
             </div>
           </div>
           <div class="dig__alert-actions">
             <span class="dig__action dig__action--ok"><Icon name="check" :size="13" />เภสัชกรยืนยันก่อนจ่ายยา</span>
             <span class="dig__action"><Icon name="phone" :size="13" />แจ้งแพทย์เจ้าของไข้</span>
           </div>
-          <p class="footnote">ยังไม่พบรายงานการใช้ยา Category X ในหญิงตั้งครรภ์</p>
+          <p class="footnote">ยังไม่พบการใช้ Category X ในหญิงตั้งครรภ์</p>
         </div>
 
         <div class="card dig__mock anim anim-4">
           <div class="dig__mock-bar">
             <span class="dig__mock-dots"><i /><i /><i /></span>
-            <span class="dig__mock-name">แผนยกระดับดิจิทัล · ตอบข้อเสนอแนะ สรพ.</span>
+            <span class="dig__mock-name">แผนดิจิทัล · ตอบข้อเสนอแนะ สรพ.</span>
             <span class="dig__mock-live dig__mock-live--blue"><i />PLAN</span>
           </div>
           <ul class="dig__plan">

@@ -9,7 +9,7 @@ const blocks = [
     icon: 'alert' as const,
     tone: 'icon-badge--red',
     title: 'High Alert Drugs',
-    detail: `แนวทางสั่งใช้เหมือนกันทั้งองค์กร · ระดับ 1 (G-I): ${highAlert.level1.join(' · ')}`,
+    detail: `แนวทางสั่งใช้เหมือนกันทั้งองค์กร · ระดับ 1: ${highAlert.level1.join(' · ')}`,
     chip: `${highAlert.total} รายการ`,
     chipCls: 'chip--red',
   },
@@ -18,7 +18,7 @@ const blocks = [
     tone: 'icon-badge--gold',
     title: 'Look-alike / Sound-alike',
     detail:
-      'จัดเก็บห่างกัน · สติ๊กเกอร์เตือนชื่อคล้าย · ตัวอย่างจริง Metformin/Norfloxacin, Allopurinol/Enalapril แก้โดยเปลี่ยนบริษัท',
+      'จัดเก็บห่างกัน · สติ๊กเกอร์เตือน · ตัวอย่างจริง Metformin/Norfloxacin, Allopurinol/Enalapril',
     chip: 'แก้ไขเชิงระบบ',
     chipCls: 'chip--gold',
   },
@@ -26,8 +26,7 @@ const blocks = [
     icon: 'clipboard-check' as const,
     tone: 'icon-badge',
     title: 'Medication Reconciliation',
-    detail:
-      'ผู้ป่วยในทุกรายที่รับนอน · สอบถามยาเดิมผ่านไลน์กลุ่มจังหวัดลพบุรี หรือโทรศัพท์ข้ามจังหวัด',
+    detail: 'ผู้ป่วยในทุกราย · สอบถามยาเดิมผ่านไลน์กลุ่มจังหวัด หรือโทรศัพท์',
     chip: '100% ผู้ป่วยใน',
     chipCls: 'chip--ok',
   },
@@ -35,8 +34,7 @@ const blocks = [
     icon: 'flask' as const,
     tone: 'icon-badge--navy',
     title: 'การรายงานและ RCA',
-    detail:
-      'รายงานผ่าน NRLS สู่คณะกรรมการความเสี่ยงทุกเดือน · ทบทวน RCA ทุกเหตุการณ์ · แผน Online ADR',
+    detail: 'รายงานผ่าน NRLS ทุกเดือน · RCA ทุกเหตุการณ์ · แผน Online ADR',
     chip: 'RCA ทุกเหตุการณ์',
     chipCls: 'chip--navy',
   },

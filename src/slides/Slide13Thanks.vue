@@ -4,11 +4,11 @@ import LogoMark from '@/components/LogoMark.vue'
 import { config } from '@/data/config'
 
 const evidence = [
-  'คำสั่งแต่งตั้ง PTC และทีมระบบยา',
-  'แนวทาง High Alert 14 รายการ และนโยบาย RDU',
-  'รายงาน ME ผ่าน NRLS และรายงาน RCA',
-  'รายงานตัวชี้วัด II-6 ปี 2563 - 2567',
-  'บัญชียา 293 รายการ และบัญชีสำรองยา',
+  'คำสั่งแต่งตั้ง PTC / ทีมระบบยา',
+  'แนวทาง High Alert 14 รายการ · นโยบาย RDU',
+  'รายงาน ME (NRLS) · RCA',
+  'ตัวชี้วัด II-6 ปี 2563-2567',
+  'บัญชียา 293 รายการ · บัญชีสำรองยา',
   'แผน CQI ตอบข้อเสนอแนะ สรพ.',
 ]
 </script>
@@ -26,7 +26,7 @@ const evidence = [
           <span class="thanks__rule" />
         </h1>
         <p class="thanks__sub anim anim-3">
-          ทีมระบบยายินดีให้ข้อมูลและหลักฐานเพิ่มเติมทุกประเด็น
+          ทีมระบบยาพร้อมให้ข้อมูลและหลักฐานเพิ่มเติม
         </p>
 
         <div class="thanks__contacts anim anim-4">

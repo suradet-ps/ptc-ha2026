@@ -21,13 +21,12 @@ const factors = [
         <header class="case__head">
           <span class="icon-badge icon-badge--red"><Icon name="user-check" :size="19" /></span>
           <div>
-            <h3 class="case__title">บริบาลเภสัชกรรมผู้ป่วยใน + Medication Reconciliation</h3>
-            <p class="case__period">ผู้ป่วยในทุกรายที่รับนอนโรงพยาบาล</p>
+            <h3 class="case__title">บริบาลเภสัชกรรมผู้ป่วยใน + Med Rec</h3>
+            <p class="case__period">ผู้ป่วยในทุกรายที่รับนอน</p>
           </div>
         </header>
         <p class="case__desc">
-          เภสัชกรประสานรายการยาเดิม วิธีรับประทานยา สอนเทคนิคพิเศษ ประเมินอาการไม่พึงประสงค์
-          และค้นหาปัญหาการใช้ยาก่อนจำหน่าย สอบถามยาเดิมผ่านไลน์กลุ่มจังหวัดลพบุรี
+          เภสัชกรประสานรายการยาเดิม สอนเทคนิคพิเศษ ประเมิน ADR และค้นหาปัญหาการใช้ยาก่อนจำหน่าย
         </p>
 
         <div class="case__stats">
@@ -54,14 +53,13 @@ const factors = [
         <header class="case__head">
           <span class="icon-badge icon-badge--navy"><Icon name="heart-pulse" :size="19" /></span>
           <div>
-            <h3 class="case__title">เภสัชกรออกหน่วยปฐมภูมิจ่ายยาที่ รพ.สต.</h3>
+            <h3 class="case__title">เภสัชกรออกหน่วยจ่ายยาที่ รพ.สต.</h3>
             <p class="case__period">นำร่อง รพ.สต.นิยมชัย · เดือนละ 1 ครั้ง</p>
           </div>
         </header>
         <p class="case__desc">
-          แพทย์ออกตรวจพร้อมเภสัชกรจ่ายยาในหน่วยเดียว ลดการเดินทางของผู้ป่วย
-          ต่อยอดเป็น Ambulatory Care ในคลินิกโรคเรื้อรัง (HT DM COPD/Asthma จิตเวช)
-          ค้นหายาเหลือใช้และปัญหาการใช้ยาก่อนพบแพทย์
+          แพทย์ออกตรวจพร้อมเภสัชกรจ่ายยา ต่อยอด Ambulatory Care ในคลินิกโรคเรื้อรัง
+          ค้นหายาเหลือใช้ก่อนพบแพทย์
         </p>
 
         <div class="case__stats">
