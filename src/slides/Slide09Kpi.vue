@@ -2,7 +2,7 @@
 import Icon from '@/components/Icon.vue'
 import SlideLayout from '@/components/SlideLayout.vue'
 import DonutGauge from '@/components/charts/DonutGauge.vue'
-import { adrReports, drugShortage, highAlertCompliance } from '@/data/metrics'
+import { dataNote, medErrorIpd, medErrorOpd, rdu, safetyResults } from '@/data/metrics'
 
 interface KpiRow {
   name: string
@@ -14,51 +14,53 @@ interface KpiRow {
   statusCls: 'ok' | 'warn'
 }
 
+const passedPercent = Math.round((rdu.passed / rdu.total) * 1000) / 10
+
 const rows: readonly KpiRow[] = [
   {
-    name: 'Medication Error Rate',
-    target: '< 3.0 ต่อ 1,000 วันนอน',
-    result: '2.4',
+    name: 'ME Prescribing ผู้ป่วยนอก',
+    target: '≤ 5 ต่อ 1,000 ใบสั่งยา',
+    result: medErrorOpd.prescribing[4]!.toFixed(2),
     trend: 'down',
-    trendLabel: 'ลดลง 5 ปีต่อเนื่อง',
+    trendLabel: 'ลดลงจาก 4.35',
     status: 'ผ่าน',
     statusCls: 'ok',
   },
   {
-    name: 'ADR Report',
-    target: '≥ 40 ราย/ปี',
-    result: '47 ราย',
-    trend: 'up',
-    trendLabel: 'เพิ่มการรายงาน',
+    name: 'ME Prescribing ผู้ป่วยใน',
+    target: '≤ 5 ต่อ 1,000 วันนอน',
+    result: medErrorIpd.prescribing[4]!.toFixed(2),
+    trend: 'down',
+    trendLabel: 'ลดลงจาก 2.54',
     status: 'ผ่าน',
     statusCls: 'ok',
   },
   {
-    name: 'RDU Score',
-    target: '≥ 70%',
-    result: '68%',
+    name: 'ME ระดับ E ขึ้นไป',
+    target: '0 ครั้ง',
+    result: '0 ครั้ง',
     trend: 'flat',
-    trendLabel: 'ใกล้เป้าหมาย',
-    status: 'เฝ้าติดตาม',
-    statusCls: 'warn',
-  },
-  {
-    name: 'High Alert Compliance',
-    target: '100%',
-    result: '98.5%',
-    trend: 'up',
-    trendLabel: 'พัฒนาต่อเนื่อง',
-    status: 'เฝ้าติดตาม',
-    statusCls: 'warn',
-  },
-  {
-    name: 'Drug Shortage Resolution',
-    target: '≤ 3 วัน',
-    result: '1.8 วัน',
-    trend: 'down',
-    trendLabel: 'เร็วขึ้นทุกปี',
+    trendLabel: 'ต่อเนื่อง 5 ปี',
     status: 'ผ่าน',
     statusCls: 'ok',
+  },
+  {
+    name: 'อุบัติการณ์แพ้ยาซ้ำ',
+    target: '0 ครั้ง',
+    result: '0 ครั้ง',
+    trend: 'flat',
+    trendLabel: 'ต่อเนื่อง 5 ปี',
+    status: 'ผ่าน',
+    statusCls: 'ok',
+  },
+  {
+    name: 'ตัวชี้วัด RDU',
+    target: 'ครบ 12 ข้อ',
+    result: `ผ่าน ${rdu.passed} ข้อ`,
+    trend: 'flat',
+    trendLabel: 'อยู่ระหว่างแก้ไข',
+    status: 'เฝ้าติดตาม',
+    statusCls: 'warn',
   },
 ]
 
@@ -90,7 +92,10 @@ const trendIcon = { down: 'trend-down', up: 'trend-up', flat: 'trend-flat' } as 
               <td>{{ row.target }}</td>
               <td class="num">{{ row.result }}</td>
               <td>
-                <span class="kpi__trend" :class="row.trend === 'flat' ? 'kpi__trend--warn' : 'kpi__trend--ok'">
+                <span
+                  class="kpi__trend"
+                  :class="row.trend === 'flat' && row.statusCls === 'warn' ? 'kpi__trend--warn' : 'kpi__trend--ok'"
+                >
                   <Icon :name="trendIcon[row.trend]" :size="15" />
                   {{ row.trendLabel }}
                 </span>
@@ -104,36 +109,34 @@ const trendIcon = { down: 'trend-down', up: 'trend-up', flat: 'trend-flat' } as 
             </tr>
           </tbody>
         </table>
-        <p class="footnote">
-          ตัวเลขเป็นผลลัพธ์ปี 2568 · ทบทวนเป้าหมายร่วมกับ PTC ปีละครั้ง
-        </p>
+        <p class="footnote">{{ dataNote }}</p>
       </div>
 
       <div class="stack gap-sm kpi__side">
         <div class="card kpi__donut anim anim-3">
           <DonutGauge
-            :value="highAlertCompliance.latest"
-            :value-text="`${highAlertCompliance.latest}%`"
-            :size="128"
+            :value="passedPercent"
+            :value-text="`${rdu.passed}/${rdu.total}`"
+            :size="126"
             color="#c9a227"
-            label="High Alert Compliance"
+            label="ตัวชี้วัด RDU ที่ผ่าน"
           />
-          <p class="kpi__donut-note">เหลืออีก 1.5% สู่เป้าหมาย 100%</p>
+          <p class="kpi__donut-note">อีก 1 ข้อ อยู่ระหว่างแก้ไขระบบข้อมูล HDC</p>
         </div>
 
         <div class="card kpi__stat anim anim-4">
-          <span class="icon-badge icon-badge--ok"><Icon name="trend-up" :size="18" /></span>
+          <span class="icon-badge icon-badge--ok"><Icon name="shield" :size="18" /></span>
           <div>
-            <p class="kpi__stat-value">{{ adrReports.latest }} <span>ราย/ปี</span></p>
-            <p class="kpi__stat-label">ADR Report เพิ่มขึ้นต่อเนื่อง</p>
+            <p class="kpi__stat-value">{{ safetyResults.levelEUp }} <span>ครั้ง</span></p>
+            <p class="kpi__stat-label">ME ระดับ E ขึ้นไป ต่อเนื่อง 5 ปี</p>
           </div>
         </div>
 
         <div class="card kpi__stat anim anim-4">
-          <span class="icon-badge"><Icon name="trend-down" :size="18" /></span>
+          <span class="icon-badge icon-badge--ok"><Icon name="check-circle" :size="18" /></span>
           <div>
-            <p class="kpi__stat-value">{{ drugShortage.latest }} <span>วัน</span></p>
-            <p class="kpi__stat-label">เวลาคืนสภาพยาขาดเร็วขึ้น</p>
+            <p class="kpi__stat-value">{{ safetyResults.repeatedAllergy }} <span>ครั้ง</span></p>
+            <p class="kpi__stat-label">อุบัติการณ์การแพ้ยาซ้ำ</p>
           </div>
         </div>
       </div>

@@ -5,38 +5,45 @@ import type { IconName } from '@/components/icons'
 
 const features: readonly { icon: IconName; title: string; detail: string }[] = [
   {
-    icon: 'bot',
-    title: 'AI Screening ใบสั่งยา',
-    detail: 'คัดกรองใบสั่งยาความเสี่ยงสูงก่อนจ่ายยา',
+    icon: 'monitor',
+    title: 'HosXp Drug Alert',
+    detail: 'เตือนข้อควรระวังและข้อห้ามใช้: G6PD ตั้งครรภ์ Warfarin',
   },
   {
     icon: 'layers',
-    title: 'e-Prescription',
-    detail: 'ลดความคลาดเคลื่อนจากลายมือเขียน',
-  },
-  {
-    icon: 'video',
-    title: 'Telepharmacy',
-    detail: 'ให้คำปรึกษาทางไกลถึง รพ.สต. เครือข่าย',
+    title: 'แพทย์คีย์คำสั่งเอง (OPD)',
+    detail: 'ลดความคลาดเคลื่อนจากการถ่ายทอดคำสั่ง',
   },
   {
     icon: 'barcode',
-    title: 'Barcode / RFID',
-    detail: 'ตรวจสอบยาซ้ำก่อนให้ยาที่ข้างเตียง',
+    title: 'Scan Order (IPD)',
+    detail: 'เภสัชกรเห็นคำสั่งแพทย์ชัดเจนก่อนจ่ายยาทุกครั้ง',
   },
   {
-    icon: 'monitor',
-    title: 'Dashboard Real-time',
-    detail: 'ติดตาม KPI ระบบยาแบบทันกาล',
+    icon: 'user-check',
+    title: 'ตรวจสอบผู้ป่วยด้วยรูปถ่าย',
+    detail: 'ยืนยันชื่อ-สกุลก่อนจ่ายยา ลดการจ่ายยาผิดคน',
   },
+  {
+    icon: 'check-circle',
+    title: 'สติ๊กเกอร์ยาจากเภสัชกร',
+    detail: 'แทนการคัดลอกด้วยลายมือ ลด transcribing error',
+  },
+]
+
+const planItems = [
+  { icon: 'bot' as const, label: 'AI-Assisted Drug Alert', target: '≥ 80%' },
+  { icon: 'flask' as const, label: 'Online ADR Reporting System', target: '+30%' },
+  { icon: 'clipboard-check' as const, label: 'Electronic Med Rec (EMR)', target: '≥ 95%' },
+  { icon: 'refresh' as const, label: 'อัปเกรด HosXp v4 แจ้งเตือน Scan อัตโนมัติ', target: 'ตามแผน' },
 ]
 </script>
 
 <template>
   <SlideLayout :n="7">
     <template #head-extra>
-      <span class="chip chip--navy"><Icon name="cpu" :size="14" />Digital Health</span>
-      <span class="chip"><Icon name="lock" :size="14" />ความมั่นคงปลอดภัยข้อมูล</span>
+      <span class="chip chip--navy"><Icon name="database" :size="14" />HosXp ใช้จริงทุกจุดบริการ</span>
+      <span class="chip"><Icon name="bot" :size="14" />แผน AI-Assisted Alert ≥ 80%</span>
     </template>
 
     <div class="dig__body">
@@ -54,49 +61,36 @@ const features: readonly { icon: IconName; title: string; detail: string }[] = [
         <div class="card dig__mock anim anim-3">
           <div class="dig__mock-bar">
             <span class="dig__mock-dots"><i /><i /><i /></span>
-            <span class="dig__mock-name">AI Screening · ใบสั่งยา OPD</span>
+            <span class="dig__mock-name">HosXp · Drug Alert</span>
             <span class="dig__mock-live"><i />LIVE</span>
           </div>
           <div class="dig__alert">
             <Icon name="alert" :size="20" />
             <div>
-              <p class="dig__alert-title">พบความเสี่ยงสูง: Warfarin + NSAIDs</p>
-              <p class="dig__alert-sub">Major interaction · แนะนำเปลี่ยนยาแก้ปวดกลุ่มอื่น</p>
+              <p class="dig__alert-title">ผู้ป่วยตั้งครรภ์: แจ้งเตือนยา Category X</p>
+              <p class="dig__alert-sub">พร้อมเตือนข้อห้ามใช้ใน G6PD และผู้ป่วยที่ใช้ Warfarin</p>
             </div>
           </div>
           <div class="dig__alert-actions">
-            <span class="dig__action dig__action--ok"><Icon name="check" :size="13" />เภสัชกรรับทราบ</span>
+            <span class="dig__action dig__action--ok"><Icon name="check" :size="13" />เภสัชกรยืนยันก่อนจ่ายยา</span>
             <span class="dig__action"><Icon name="phone" :size="13" />แจ้งแพทย์เจ้าของไข้</span>
           </div>
-          <p class="footnote">คัดกรอง 1,240 ใบสั่งยา/เดือน · จับความเสี่ยงสูง 38 รายการ</p>
+          <p class="footnote">ยังไม่พบรายงานการใช้ยา Category X ในหญิงตั้งครรภ์</p>
         </div>
 
         <div class="card dig__mock anim anim-4">
           <div class="dig__mock-bar">
             <span class="dig__mock-dots"><i /><i /><i /></span>
-            <span class="dig__mock-name">Telepharmacy · เชื่อมต่อ รพ.สต.</span>
-            <span class="dig__mock-live dig__mock-live--blue"><i />ONLINE</span>
+            <span class="dig__mock-name">แผนยกระดับดิจิทัล · ตอบข้อเสนอแนะ สรพ.</span>
+            <span class="dig__mock-live dig__mock-live--blue"><i />PLAN</span>
           </div>
-          <div class="dig__tele">
-            <div class="dig__tele-node">
-              <span class="icon-badge"><Icon name="hospital" :size="18" /></span>
-              <b>รพ.แม่ข่าย</b>
-              <span>เภสัชกร</span>
-            </div>
-            <div class="dig__tele-link">
-              <Icon name="wifi" :size="20" />
-              <span class="dig__tele-line" />
-            </div>
-            <div class="dig__tele-node">
-              <span class="icon-badge icon-badge--navy"><Icon name="heart-pulse" :size="18" /></span>
-              <b>รพ.สต. เครือข่าย</b>
-              <span>12 แห่ง</span>
-            </div>
-          </div>
-          <div class="dig__tele-foot">
-            <span class="chip chip--ok"><Icon name="trend-up" :size="13" />Adherence +24 จุด</span>
-            <span class="chip chip--muted"><Icon name="video" :size="13" />ให้คำปรึกษา 240 ครั้ง/เดือน</span>
-          </div>
+          <ul class="dig__plan">
+            <li v-for="item in planItems" :key="item.label">
+              <Icon :name="item.icon" :size="16" />
+              <span>{{ item.label }}</span>
+              <em>{{ item.target }}</em>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -279,56 +273,37 @@ const features: readonly { icon: IconName; title: string; detail: string }[] = [
   padding-top: 8px;
 }
 
-.dig__tele {
+.dig__plan {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.dig__tele-node {
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1;
+  padding-top: 10px;
+}
+
+.dig__plan li {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 5px;
-  padding: 10px 8px;
-  border-radius: 12px;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 7px 10px;
+  border-radius: 9px;
   background: var(--surface-tint);
-  border: 1px solid var(--line-soft);
-  text-align: center;
 }
 
-.dig__tele-node b {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink-strong);
-}
-
-.dig__tele-node span:last-child {
-  font-size: 12px;
-  color: var(--ink-faint);
-}
-
-.dig__tele-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+.dig__plan svg {
+  flex: none;
   color: var(--ha-blue);
 }
 
-.dig__tele-line {
-  width: 44px;
-  height: 2px;
-  border-radius: 1px;
-  background: repeating-linear-gradient(90deg, var(--ha-blue) 0 6px, transparent 6px 10px);
-}
-
-.dig__tele-foot {
-  display: flex;
-  gap: 8px;
-  margin-top: auto;
-  padding-top: 10px;
+.dig__plan em {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ha-navy);
+  white-space: nowrap;
 }
 </style>

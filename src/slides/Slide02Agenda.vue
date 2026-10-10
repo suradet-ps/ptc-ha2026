@@ -46,7 +46,7 @@ const items: readonly AgendaItem[] = [
     no: '4',
     icon: 'bot',
     title: 'Digital Health',
-    sub: 'AI, Telepharmacy, Barcode',
+    sub: 'HosXp · Scan Order · แผน AI',
     slides: 'สไลด์ 7',
     time: '1:30',
     color: '#0e72cb',
