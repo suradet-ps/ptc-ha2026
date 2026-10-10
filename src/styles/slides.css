@@ -573,57 +573,6 @@
   text-align: left;
 }
 
-/* ===== Org chart ===== */
-.org {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.org__box {
-  width: 100%;
-  text-align: center;
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  font-size: 14.5px;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.org__box--top {
-  background: var(--surface-tint);
-  font-size: 13.5px;
-  color: var(--ink-soft);
-}
-
-.org__box--main {
-  background: var(--ha-blue);
-  border-color: var(--ha-blue);
-  color: #ffffff;
-  font-weight: 600;
-  box-shadow: 0 6px 18px rgba(13, 95, 168, 0.3);
-}
-
-.org__link {
-  width: 2px;
-  height: 14px;
-  background: var(--line);
-}
-
-.org__row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  width: 100%;
-}
-
-.org__row .org__box {
-  font-size: 13.5px;
-  padding: 7px 6px;
-}
-
 /* ===== PDCA mini ===== */
 .pdca {
   display: flex;

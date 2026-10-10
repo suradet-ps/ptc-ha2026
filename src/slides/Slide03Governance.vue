@@ -31,13 +31,6 @@ const pdca = [
           <li v-for="text in bullets" :key="text">{{ text }}</li>
         </ul>
 
-        <div class="gov__example anim anim-3">
-          <Icon name="check-circle" :size="16" />
-          <span>
-            ตัวอย่างจริง: PTC 1/2567 เพิ่ม <strong>Atorvastatin 40 mg</strong> สำหรับ ASCVD
-          </span>
-        </div>
-
         <div class="card card--tint gov__pdca anim anim-3">
           <p class="gov__pdca-title">
             <Icon name="refresh" :size="16" />
@@ -52,44 +45,19 @@ const pdca = [
             </template>
           </div>
         </div>
-
-        <div class="gov__note anim anim-4">
-          <Icon name="file-text" :size="16" />
-          อบรมล่าสุด 3-4 เม.ย. 2567 · เจ้าหน้าที่ผ่านการประเมินก่อนขึ้นเวร
-        </div>
       </div>
 
-      <div class="card gov__org anim anim-3">
-        <p class="gov__org-title">
-          <Icon name="landmark" :size="17" />
-          โครงสร้างการกำกับดูแลระบบยา
+      <div class="card gov__photo anim anim-3">
+        <div class="gov__photo-frame">
+          <img
+            src="/images/ptc.jpeg"
+            alt="การประชุม PTC ร่วมกับทีมนำทางคลินิกและ รพ.สต. โรงพยาบาลสระโบสถ์"
+          />
+        </div>
+        <p class="gov__photo-caption">
+          <Icon name="users" :size="14" />
+          การประชุม PTC ร่วมกับทีมนำทางคลินิกและ รพ.สต. {{ hospitalScale.subDistricts }} แห่ง
         </p>
-
-        <div class="gov__org-body">
-          <div class="org">
-            <div class="org__box org__box--top">คณะกรรมการบริหารโรงพยาบาล</div>
-            <div class="org__link" />
-            <div class="org__box org__box--main">
-              PTC · คณะกรรมการเภสัชกรรมและการบำบัด
-              <span class="gov__org-sub">ระดับโรงพยาบาลและ รพ.สต. ร่วมกับทีมนำทางคลินิก</span>
-            </div>
-            <div class="org__link" />
-            <div class="org__row">
-              <div class="org__box">แพทย์</div>
-              <div class="org__box">พยาบาล</div>
-              <div class="org__box">เภสัชกร</div>
-              <div class="org__box">ทีมนำทางคลินิก</div>
-            </div>
-          </div>
-          <p class="gov__org-caption">
-            ครอบคลุม รพ.สต. 5 แห่ง ทุกจุดบริการ
-          </p>
-        </div>
-
-        <div class="gov__org-foot">
-          <span class="chip chip--muted"><Icon name="file-text" :size="13" />คำสั่งแต่งตั้ง PTC</span>
-          <span class="chip chip--muted"><Icon name="clipboard-check" :size="13" />มติบัญชียา 1/2567</span>
-        </div>
       </div>
     </div>
   </SlideLayout>
@@ -99,29 +67,6 @@ const pdca = [
 .gov__left {
   justify-content: space-between;
   gap: 12px;
-}
-
-.gov__example {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 14.5px;
-  line-height: 1.5;
-  color: var(--ha-blue-deep);
-  background: var(--surface-blue);
-  border-left: 4px solid var(--ha-blue);
-  border-radius: 0 10px 10px 0;
-  padding: 10px 14px;
-}
-
-.gov__example svg {
-  flex: none;
-  color: var(--ok);
-}
-
-.gov__example strong {
-  font-weight: 600;
-  color: var(--ink-strong);
 }
 
 .gov__pdca {
@@ -142,67 +87,40 @@ const pdca = [
   color: var(--ha-blue);
 }
 
-.gov__note {
+.gov__photo {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 14px 12px;
+}
+
+.gov__photo-frame {
+  flex: 1;
+  min-height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  background: var(--surface-tint);
+}
+
+.gov__photo-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gov__photo-caption {
+  margin-top: 10px;
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-size: 14px;
-  font-weight: 500;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
   color: var(--ink-soft);
 }
 
-.gov__note svg {
-  color: var(--ha-blue);
+.gov__photo-caption svg {
   flex: none;
-}
-
-.gov__org {
-  display: flex;
-  flex-direction: column;
-}
-
-.gov__org-title {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--ink-strong);
-  margin-bottom: 6px;
-}
-
-.gov__org-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-}
-
-.gov__org-caption {
-  text-align: center;
-  font-size: 13px;
-  color: var(--ink-faint);
-  line-height: 1.5;
-}
-
-.gov__org-title svg {
   color: var(--ha-blue);
-}
-
-.gov__org-sub {
-  display: block;
-  font-size: 12.5px;
-  font-weight: 400;
-  color: #cfe3f5;
-  margin-top: 2px;
-}
-
-.gov__org-foot {
-  margin-top: auto;
-  padding-top: 16px;
-  display: flex;
-  gap: 8px;
-  justify-content: center;
 }
 </style>
