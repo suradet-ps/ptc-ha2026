@@ -53,6 +53,10 @@ const timeLabel = computed(() => {
         {{ config.hospitalName }} · {{ config.teamName }}
       </span>
       <span v-if="isDemo" class="chip chip--gold">ข้อมูลตัวอย่าง</span>
+      <span v-if="meta.standardRef" class="slide__ref">
+        <Icon name="file-text" :size="12" />
+        อ้างอิงมาตรฐาน {{ meta.standardRef }}
+      </span>
       <span class="slide__foot-right">
         <span class="row gap-xs"><Icon name="clock" :size="13" />{{ timeLabel }} นาที</span>
         <span>{{ meta.n }} / {{ slideCount }}</span>
@@ -60,3 +64,33 @@ const timeLabel = computed(() => {
     </footer>
   </article>
 </template>
+
+<style scoped>
+.slide__ref {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-tint);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.slide__ref svg {
+  color: var(--ha-blue);
+}
+
+.slide--dark .slide__ref {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: #cfe3f5;
+}
+
+.slide--dark .slide__ref svg {
+  color: #9cc6ec;
+}
+</style>

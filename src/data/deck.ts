@@ -5,6 +5,7 @@ export interface SlideMeta {
   readonly kicker: string
   readonly title: string
   readonly keyMessage: string
+  readonly standardRef?: string
   readonly minutes: number
   readonly notes: string
   readonly evidence: readonly string[]
@@ -42,6 +43,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: 'Governance',
     title: 'Governance / PTC',
     keyMessage: 'PTC เป็นกลไกหลักในการกำกับดูแลระบบยาทั้งองค์กร',
+    standardRef: 'II-6.1 ก (1)',
     minutes: 1.5,
     notes:
       'PTC ของเราทำงานร่วมกับ รพ.สต. ทั้ง 5 แห่งและทีมนำทางคลินิก มีตัวอย่างจริงคือการทบทวนบัญชียาเพิ่ม Atorvastatin 40 mg ในกลุ่ม ASCVD และความคลาดเคลื่อนทางยาทุกรายจะรายงานต่อคณะกรรมการความเสี่ยงทุกเดือนครับ/ค่ะ',
@@ -58,6 +60,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: 'Selection & Procurement',
     title: 'การคัดเลือกและจัดหายา',
     keyMessage: 'ใช้หลักฐานเชิงประจักษ์ และมีระบบสำรองที่มั่นคง',
+    standardRef: 'II-6.1 ค',
     minutes: 1.5,
     notes:
       'โรงพยาบาลมียา 293 รายการ โดยร้อยละ 97.6 อยู่ในบัญชียาหลักแห่งชาติ มีจุดสำรองยา 2 จุดพร้อม Emergency box ใช้เมื่อห้องยาปิด และหากยาขาดจะยืมจากโรงพยาบาลแม่ข่ายเพื่อให้ผู้ป่วยได้รับยาต่อเนื่องครับ/ค่ะ',
@@ -74,6 +77,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: 'Medication Safety',
     title: 'ความปลอดภัยด้านยา',
     keyMessage: 'ความปลอดภัยด้านยาเป็นหัวใจของระบบยา',
+    standardRef: 'II-6.1 ก (5) · II-6.2 ก (2)',
     minutes: 2,
     notes:
       'High Alert 14 รายการมีแนวทางสั่งใช้เหมือนกันทั้งองค์กร ความคลาดเคลื่อนทุกรายรายงานผ่าน NRLS เข้าสู่การวิเคราะห์ RCA และในปีนี้ไม่มีเหตุรุนแรงระดับ E ขึ้นไปเลยครับ/ค่ะ',
@@ -90,6 +94,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: 'RDU / AMS',
     title: 'การใช้ยาสมเหตุผลและ AMS',
     keyMessage: 'ใช้ยาสมเหตุผลครบ 12 ตัวชี้วัด และกำกับยาปฏิชีวนะอย่างเข้มงวด',
+    standardRef: 'II-6.1 ก (2)',
     minutes: 1.5,
     notes:
       'ตัวชี้วัด RDU ผ่าน 11 จาก 12 ข้อ อีก 1 ข้อเราวิเคราะห์แล้วว่าเกิดจากข้อจำกัดของระบบข้อมูล HDC และอยู่ระหว่างประสานแก้ไข ส่วนยาปฏิชีวนะนอกบัญชีต้องมีใบ consult แพทย์เฉพาะทางหรือผลเพาะเชื้อทุกครั้งครับ/ค่ะ',
@@ -106,6 +111,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: 'Digital Health & AI',
     title: 'เทคโนโลยีดิจิทัลและแผน AI',
     keyMessage: 'ต่อยอดระบบดิจิทัลที่มีอยู่ สู่ AI-Assisted Drug Alert',
+    standardRef: 'II-6.1 ข (4) · II-6.2 ก (3)',
     minutes: 1.5,
     notes:
       'ระบบ HosXp ของเราเตือนข้อควรระวังและข้อห้ามใช้ เช่น ผู้ป่วย G6PD ตั้งครรภ์ และ Warfarin มีระบบ scan order และเภสัชกรทบทวนทุกคำสั่ง และมีแผนต่อยอดสู่ AI-Assisted Drug Alert ตามข้อเสนอแนะครับ/ค่ะ',
@@ -122,6 +128,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: '3P Safety',
     title: 'ความปลอดภัย 3 มิติ',
     keyMessage: 'ความปลอดภัยต้องครอบคลุมทั้งผู้ป่วย เจ้าหน้าที่ และสาธารณะ',
+    standardRef: 'II-6.1 ข (1) · II-6.2 ค',
     minutes: 1,
     notes:
       'ความปลอดภัยของเราครอบคลุมผู้ป่วยจากตัวชี้วัดความคลาดเคลื่อน เจ้าหน้าที่จากการอบรมและการประเมินความรู้ก่อนขึ้นเวรนอกเวลา และสาธารณะผ่านการออกหน่วยปฐมภูมิและห่วงโซ่ความเย็นวัคซีนครับ/ค่ะ',
@@ -138,6 +145,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: 'KPI Dashboard',
     title: 'ตัวชี้วัดระบบยา',
     keyMessage: 'ตัวชี้วัดสะท้อนผลลัพธ์และใช้ขับเคลื่อนการพัฒนา',
+    standardRef: 'II-6.1 ก (3)',
     minutes: 1.5,
     notes:
       'ตัวชี้วัดความคลาดเคลื่อนทุกประเภทผ่านเป้าหมาย ระดับ E ขึ้นไปและแพ้ยาซ้ำเป็นศูนย์ต่อเนื่อง เหลือเพียงตัวชี้วัด RDU 1 ข้อที่อยู่ระหว่างแก้ไขระบบข้อมูลครับ/ค่ะ',
@@ -154,6 +162,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: 'Continuous Improvement',
     title: 'การปรับปรุงต่อเนื่องด้วย PDSA',
     keyMessage: 'เราแก้ปัญหาด้วยข้อมูลและวัดผลได้จริง',
+    standardRef: 'II-6.2 ก',
     minutes: 1,
     notes:
       'ตัวอย่าง PDSA จริงคือการยกเลิก copy order แล้วเปลี่ยนเป็น scan order ให้เภสัชกรคัดลอกคำสั่งแทนพยาบาล ทำให้ transcribing error ผู้ป่วยในลดจาก 0.42 เหลือ 0.03 ต่อพันวันนอนครับ/ค่ะ',
@@ -170,6 +179,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: 'Case Study',
     title: 'ผลสำเร็จที่จับต้องได้',
     keyMessage: 'ผลลัพธ์จริงจากการทำงานเชิงรุกของทีมเภสัชกรรม',
+    standardRef: 'II-6.2 ก (2) · ข (5)',
     minutes: 1,
     notes:
       'จุดที่ภาคภูมิใจคือการบริบาลเภสัชกรรมผู้ป่วยในทุกรายที่รับนอน และการออกหน่วยปฐมภูมิที่มีเภสัชกรจ่ายยาร่วมกับแพทย์ที่ รพ.สต. รวมถึงคลินิกโรคเรื้อรังที่เภสัชกรค้นหาปัญหาการใช้ยาก่อนพบแพทย์ครับ/ค่ะ',
@@ -186,6 +196,7 @@ export const deck: readonly SlideMeta[] = [
     kicker: 'Roadmap',
     title: 'แผนพัฒนาระบบยา 3 ปี',
     keyMessage: 'แผนพัฒนาเชิงรุกตอบข้อเสนอแนะ สรพ. ครบทุกประเด็น',
+    standardRef: 'II-6.1 ก (1)(iv)',
     minutes: 0.75,
     notes:
       'แผนทั้ง 3 ระยะตอบข้อเสนอแนะของทีมสำรวจครบทุกประเด็น ตั้งแต่ทีมความปลอดภัยด้านยา การตามรอยแนวปฏิบัติ ไปจนถึง AI-Assisted Drug Alert โดยมีตัวชี้วัดความสำเร็จชัดเจนและทบทวนทุก 6 เดือนครับ/ค่ะ',

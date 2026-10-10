@@ -59,6 +59,10 @@ const pace = computed(() => {
             <Icon name="target" :size="14" />
             ควรอยู่ที่ {{ formatTime(targetSeconds) }}
           </span>
+          <span v-if="meta.standardRef" class="notes__chip">
+            <Icon name="file-text" :size="14" />
+            อ้างอิงมาตรฐาน {{ meta.standardRef }}
+          </span>
         </div>
       </section>
 
