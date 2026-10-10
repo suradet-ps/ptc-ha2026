@@ -19,9 +19,9 @@ const bullets = [
 ]
 
 const stats = [
-  { value: `${drugInventory.edPercent}%`, label: 'อยู่ในบัญชียาหลักแห่งชาติ (ED)' },
-  { value: `${drugInventory.reservePoints} จุด`, label: 'สำรองยานอกเวลาห้องยาปิด' },
-  { value: 'ทุกวัน', label: 'ตรวจเช็คสต๊อกยาโดยพยาบาล' },
+  { value: `${drugInventory.edPercent}%`, label: 'บัญชียาหลักแห่งชาติ (ED)' },
+  { value: `${drugInventory.reservePoints} จุด`, label: 'สำรองนอกเวลาห้องยาปิด' },
+  { value: 'ทุกวัน', label: 'พยาบาลตรวจสต๊อกยา' },
 ]
 </script>
 
@@ -54,6 +54,21 @@ const stats = [
             หลักฐาน: บัญชียา · บัญชีสำรองยา · บันทึกตรวจสต๊อก
           </li>
         </ul>
+
+        <div class="card card--tint sel__invs anim anim-4">
+          <p class="sel__invs-title">
+            <Icon name="package" :size="16" />
+            การบริหารคลังยา
+          </p>
+          <p class="sel__invs-row">
+            <Icon name="database" :size="14" />
+            <span>ใช้โปรแกรม <b>INVS</b> จัดซื้อและบริหารคลังเวชภัณฑ์ยา</span>
+          </p>
+          <p class="sel__invs-row">
+            <Icon name="file-text" :size="14" />
+            <span>ส่งข้อมูล <b>5 แฟ้ม</b> ให้กระทรวงสาธารณสุข</span>
+          </p>
+        </div>
 
         <div class="sel__stats anim anim-4">
           <div v-for="s in stats" :key="s.label" class="sel__stat">
@@ -96,7 +111,49 @@ const stats = [
 
 .sel__left {
   justify-content: space-between;
-  gap: 14px;
+  gap: 12px;
+}
+
+.sel__invs {
+  padding: 12px 15px 13px;
+}
+
+.sel__invs-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.sel__invs-title svg {
+  color: var(--ha-blue);
+}
+
+.sel__invs-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.sel__invs-row + .sel__invs-row {
+  margin-top: 6px;
+}
+
+.sel__invs-row svg {
+  flex: none;
+  margin-top: 2.5px;
+  color: var(--ha-navy);
+}
+
+.sel__invs-row b {
+  font-weight: 600;
+  color: var(--ink-strong);
 }
 
 .sel__evidence {
@@ -118,15 +175,15 @@ const stats = [
 .sel__stat {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 10px 12px;
+  gap: 2px;
+  padding: 8px 12px;
   border-radius: 12px;
   background: var(--surface-tint);
   border: 1px solid var(--line-soft);
 }
 
 .sel__stat b {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--ha-blue-deep);
   line-height: 1.2;
@@ -135,7 +192,7 @@ const stats = [
 
 .sel__stat span {
   font-size: 11.5px;
-  line-height: 1.45;
+  line-height: 1.4;
   color: var(--ink-soft);
 }
 
