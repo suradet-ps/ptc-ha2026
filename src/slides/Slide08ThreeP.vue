@@ -26,7 +26,7 @@ const blocks: readonly PBlock[] = [
     activity: 'กิจกรรม: ค้นหาปัญหาการใช้ยาก่อนพบแพทย์',
   },
   {
-    key: 'เจ้าหน้าที่',
+    key: 'บุคลากรทางการแพทย์',
     en: 'Personnel',
     icon: 'hard-hat',
     tone: 'navy',
@@ -38,8 +38,8 @@ const blocks: readonly PBlock[] = [
     activity: 'แผน: อบรม Just Culture ≥ 90%',
   },
   {
-    key: 'สาธารณะ',
-    en: 'Public',
+    key: 'ประชาชน',
+    en: 'People',
     icon: 'globe',
     tone: 'red',
     items: [

@@ -18,15 +18,15 @@ const steps = [
     tone: 'd',
   },
   {
-    key: 'C',
-    title: 'Check',
+    key: 'S',
+    title: 'Study',
     detail: 'IPD 0.42 → 0 ต่อพันวันนอน (ลด 100%)',
     tone: 'c',
   },
   {
     key: 'A',
     title: 'Act',
-    detail: 'กำหนดเป็นแนวปฏิบัติถาวร + แจ้งเตือนอัตโนมัติใน HOSxP v4',
+    detail: 'กำหนดเป็นแนวปฏิบัติถาวร + เภสัชกรคัดลอกคำสั่งทุกครั้ง',
     tone: 'a',
   },
 ]
