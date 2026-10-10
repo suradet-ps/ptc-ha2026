@@ -4,12 +4,12 @@ import LogoMark from '@/components/LogoMark.vue'
 import { config } from '@/data/config'
 
 const evidence = [
-  'คำสั่งแต่งตั้ง PTC / AMS / ทีมระบบยา',
-  'นโยบายระบบยา High Alert RDU AMS',
-  'รายงานการประชุม PTC 12 เดือน',
-  'รายงาน Medication Error / ADR',
-  'รายงาน KPI รายไตรมาส',
-  'รายงาน PDSA และแผนพัฒนาระบบยา',
+  'คำสั่งแต่งตั้ง PTC และทีมระบบยา',
+  'แนวทาง High Alert 14 รายการ และนโยบาย RDU',
+  'รายงาน ME ผ่าน NRLS และรายงาน RCA',
+  'รายงานตัวชี้วัด II-6 ปี 2563 - 2567',
+  'บัญชียา 293 รายการ และบัญชีสำรองยา',
+  'แผน CQI ตอบข้อเสนอแนะ สรพ.',
 ]
 </script>
 

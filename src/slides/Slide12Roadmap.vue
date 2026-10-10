@@ -14,39 +14,39 @@ interface Phase {
 
 const phases: readonly Phase[] = [
   {
-    year: '2569',
-    label: 'ระยะที่ 1 · ขยายฐาน',
-    icon: 'bot',
+    year: '2568',
+    label: 'ระยะที่ 1 · ทีมและแนวปฏิบัติ',
+    icon: 'users',
     items: [
-      'ขยาย AI Screening ทุกแผนกผู้ป่วยนอก',
-      'ทบทวน KPI ให้ตรงมาตรฐานฉบับที่ 6',
-      'พัฒนาศักยภาพเภสัชกรด้านข้อมูล (Data Literacy)',
+      'แต่งตั้งคณะทำงานความปลอดภัยด้านยา (Medication Safety Committee)',
+      'แนวปฏิบัติจ่ายยานอกเวลาราชการ + Double check',
+      'ทบทวนบัญชียาฉุกเฉิน ยาเสพติด ให้สต๊อกพร้อมใช้ ≥ 95%',
     ],
-    milestone: 'Milestone: AI ครบทุก OPD',
+    milestone: 'Milestone: ทีมพร้อม แนวปฏิบัติครบ',
     tone: 'blue',
   },
   {
-    year: '2570',
-    label: 'ระยะที่ 2 · เชื่อมโยง',
-    icon: 'network',
+    year: '2569',
+    label: 'ระยะที่ 2 · ตามรอยและรายงาน',
+    icon: 'clipboard-check',
     items: [
-      'Predictive Analytics แจ้งเตือน ADR ล่วงหน้า',
-      'Telepharmacy ครอบคลุมทุก รพ.สต.',
-      'เชื่อมข้อมูลกับ Health Information Exchange',
+      'Medication Safety Audit Team ตามรอย HAD/ADR/Med Rec ≥ 90%',
+      'Online ADR Reporting System รายงานเพิ่ม ≥ 30%',
+      'Electronic Med Rec (EMR) ครอบคลุม ≥ 95%',
     ],
-    milestone: 'Milestone: รพ.สต. ครบ 100%',
+    milestone: 'Milestone: ตามรอยได้ทุกหน่วยงาน',
     tone: 'navy',
   },
   {
-    year: '2571',
-    label: 'ระยะที่ 3 · ครบวงจร',
-    icon: 'refresh',
+    year: '2570',
+    label: 'ระยะที่ 3 · ดิจิทัลเต็มระบบ',
+    icon: 'bot',
     items: [
-      'Paperless 100% ทุกกระบวนการยา',
-      'Closed-loop Medication ครบวงจร',
-      'ต่อยอดงานวิจัยระบบยาและนวัตกรรม',
+      'AI-Assisted Drug Alert ใช้งาน ≥ 80%',
+      'CPOE สั่งยาผ่านคอมพิวเตอร์ทุกจุดบริการ',
+      'อัปเกรด HosXp v4 แจ้งเตือน Scan order อัตโนมัติ',
     ],
-    milestone: 'Milestone: Closed-loop ครบวงจร',
+    milestone: 'Milestone: AI + ความปลอดภัยครบวงจร',
     tone: 'red',
   },
 ]
@@ -55,8 +55,8 @@ const phases: readonly Phase[] = [
 <template>
   <SlideLayout :n="12">
     <template #head-extra>
-      <span class="chip"><Icon name="calendar" :size="14" />แผน 3 ปี (2569 - 2571)</span>
-      <span class="chip chip--navy"><Icon name="file-text" :size="14" />อนุมัติในแผนยุทธศาสตร์</span>
+      <span class="chip"><Icon name="file-text" :size="14" />ตอบข้อเสนอแนะ สรพ. 19-20 ก.พ. 2568</span>
+      <span class="chip chip--navy"><Icon name="target" :size="14" />ตัวชี้วัดความสำเร็จรายแผนงาน</span>
     </template>
 
     <div class="road anim anim-2">
@@ -86,12 +86,12 @@ const phases: readonly Phase[] = [
         เป้าหมายสูงสุด: ความปลอดภัยของผู้ป่วยทุกราย
       </span>
       <span class="road__foot-item">
-        <Icon name="check-circle" :size="15" />
-        ทบทวนความคืบหน้าทุก 6 เดือนต่อ PTC
+        <Icon name="calendar-check" :size="15" />
+        ติดตามผลและทบทวนแนวทางทุก 6 เดือน
       </span>
       <span class="road__foot-item">
         <Icon name="folder" :size="15" />
-        อ้างอิง: แผนยุทธศาสตร์ระบบยา · แผนงบประมาณ
+        อ้างอิง: แผน CQI · แผนยุทธศาสตร์ระบบยา · แผนงบประมาณ
       </span>
     </div>
   </SlideLayout>

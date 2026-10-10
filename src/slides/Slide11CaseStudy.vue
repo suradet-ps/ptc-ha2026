@@ -1,30 +1,19 @@
 <script setup lang="ts">
 import Icon from '@/components/Icon.vue'
 import SlideLayout from '@/components/SlideLayout.vue'
-import BarCompare from '@/components/charts/BarCompare.vue'
-import { casePolypharmacy, caseTelepharmacy } from '@/data/metrics'
-
-const caseOneBars = [
-  { label: 'ก่อนโครงการ', value: casePolypharmacy.errorBefore, color: '#dc3b38', sub: casePolypharmacy.unit },
-  { label: 'หลังโครงการ', value: casePolypharmacy.errorAfter, color: '#1c9e5a', sub: casePolypharmacy.unit },
-]
-
-const caseTwoBars = [
-  { label: 'ก่อนโครงการ', value: caseTelepharmacy.adherenceBefore, color: '#8a97a5', sub: '% adherence' },
-  { label: 'หลังโครงการ', value: caseTelepharmacy.adherenceAfter, color: '#0d5fa8', sub: '% adherence' },
-]
+import { hospitalScale, safetyResults } from '@/data/metrics'
 
 const factors = [
-  { icon: 'bot' as const, label: 'AI คัดกรองความเสี่ยง' },
-  { icon: 'user-check' as const, label: 'เภสัชกรทบทวนใบสั่งยา' },
-  { icon: 'users' as const, label: 'ทีมสหสาขาวิชาชีพ' },
+  { icon: 'users' as const, label: `ทีมเภสัชกร ${hospitalScale.pharmacists} คน ทำงานเชิงรุก` },
+  { icon: 'database' as const, label: 'เทคโนโลยี HosXp' },
+  { icon: 'network' as const, label: `เครือข่าย รพ.สต. ${hospitalScale.subDistricts} แห่ง` },
 ]
 </script>
 
 <template>
   <SlideLayout :n="11">
     <template #head-extra>
-      <span class="chip chip--ok"><Icon name="award" :size="14" />ผลลัพธ์ที่วัดได้จริง</span>
+      <span class="chip chip--ok"><Icon name="award" :size="14" />ผลงานเด่นจากรายงาน II-6</span>
     </template>
 
     <div class="case__grid anim anim-2">
@@ -32,35 +21,66 @@ const factors = [
         <header class="case__head">
           <span class="icon-badge icon-badge--red"><Icon name="user-check" :size="19" /></span>
           <div>
-            <h3 class="case__title">{{ casePolypharmacy.title }}</h3>
-            <p class="case__period">ระยะเวลา {{ casePolypharmacy.period }} · ผู้ป่วยสูงอายุหลายโรค</p>
+            <h3 class="case__title">บริบาลเภสัชกรรมผู้ป่วยใน + Medication Reconciliation</h3>
+            <p class="case__period">ผู้ป่วยในทุกรายที่รับนอนโรงพยาบาล</p>
           </div>
         </header>
         <p class="case__desc">
-          AI คัดกรอง Drug Interaction ในผู้ป่วยที่ได้ยา ≥ 5 รายการ ร่วมกับเภสัชกรทบทวนใบสั่งยาทุกรายก่อนจ่ายยา
+          เภสัชกรประสานรายการยาเดิม วิธีรับประทานยา สอนเทคนิคพิเศษ ประเมินอาการไม่พึงประสงค์
+          และค้นหาปัญหาการใช้ยาก่อนจำหน่าย สอบถามยาเดิมผ่านไลน์กลุ่มจังหวัดลพบุรี
         </p>
-        <BarCompare :items="caseOneBars" :height="190" :decimals="1" />
+
+        <div class="case__stats">
+          <div class="case__stat">
+            <span class="case__stat-value case__stat-value--ok">{{ safetyResults.levelEUp }}</span>
+            <span class="case__stat-label">ME ระดับ E ขึ้นไป (ครั้ง)</span>
+          </div>
+          <div class="case__stat">
+            <span class="case__stat-value case__stat-value--ok">{{ safetyResults.repeatedAllergy }}</span>
+            <span class="case__stat-label">แพ้ยาซ้ำ (ครั้ง)</span>
+          </div>
+          <div class="case__stat">
+            <span class="case__stat-value">100%</span>
+            <span class="case__stat-label">ผู้ป่วยในที่ทำ Med Rec</span>
+          </div>
+        </div>
+
         <footer class="case__foot">
-          <span class="chip chip--red"><Icon name="trend-down" :size="13" />Error ลด {{ casePolypharmacy.reduction }}%</span>
-          <span class="chip chip--muted">หน่วย: {{ casePolypharmacy.unit }}</span>
+          <span class="chip chip--ok"><Icon name="check" :size="13" />ต่อเนื่อง 5 ปี (2563 - 2567)</span>
         </footer>
       </article>
 
       <article class="card case__card">
         <header class="case__head">
-          <span class="icon-badge icon-badge--navy"><Icon name="video" :size="19" /></span>
+          <span class="icon-badge icon-badge--navy"><Icon name="heart-pulse" :size="19" /></span>
           <div>
-            <h3 class="case__title">{{ caseTelepharmacy.title }}</h3>
-            <p class="case__period">ระยะเวลา {{ caseTelepharmacy.period }} · {{ caseTelepharmacy.stations }} แห่ง</p>
+            <h3 class="case__title">เภสัชกรออกหน่วยปฐมภูมิจ่ายยาที่ รพ.สต.</h3>
+            <p class="case__period">นำร่อง รพ.สต.นิยมชัย · เดือนละ 1 ครั้ง</p>
           </div>
         </header>
         <p class="case__desc">
-          เภสัชกรให้คำปรึกษาผ่านระบบ Telepharmacy ครอบคลุม รพ.สต. เครือข่าย พร้อมติดตาม adherence ผู้ป่วยโรคเรื้อรัง
+          แพทย์ออกตรวจพร้อมเภสัชกรจ่ายยาในหน่วยเดียว ลดการเดินทางของผู้ป่วย
+          ต่อยอดเป็น Ambulatory Care ในคลินิกโรคเรื้อรัง (HT DM COPD/Asthma จิตเวช)
+          ค้นหายาเหลือใช้และปัญหาการใช้ยาก่อนพบแพทย์
         </p>
-        <BarCompare :items="caseTwoBars" :height="190" :decimals="0" unit="%" />
+
+        <div class="case__stats">
+          <div class="case__stat">
+            <span class="case__stat-value">1<span class="case__stat-unit">ครั้ง/เดือน</span></span>
+            <span class="case__stat-label">ออกหน่วยปฐมภูมิ</span>
+          </div>
+          <div class="case__stat">
+            <span class="case__stat-value">{{ hospitalScale.subDistricts }}<span class="case__stat-unit">แห่ง</span></span>
+            <span class="case__stat-label">รพ.สต. ในห่วงโซ่ความเย็นวัคซีน</span>
+          </div>
+          <div class="case__stat">
+            <span class="case__stat-value">4<span class="case__stat-unit">คลินิก</span></span>
+            <span class="case__stat-label">Ambulatory Care โรคเรื้อรัง</span>
+          </div>
+        </div>
+
         <footer class="case__foot">
-          <span class="chip chip--ok"><Icon name="trend-up" :size="13" />Adherence +{{ caseTelepharmacy.adherenceAfter - caseTelepharmacy.adherenceBefore }} จุด</span>
-          <span class="chip chip--muted">ให้คำปรึกษา 240 ครั้ง/เดือน</span>
+          <span class="chip chip--navy"><Icon name="video" :size="13" />แพทย์ + เภสัชกรพร้อมกันในหน่วยเดียว</span>
         </footer>
       </article>
     </div>
@@ -72,7 +92,8 @@ const factors = [
       </span>
       <span class="case__strip-note">
         <Icon name="check-circle" :size="14" />
-        ตัวชี้วัดรายงานต่อ PTC ทุกไตรมาส
+        ผู้ป่วยนอก {{ hospitalScale.opdPrescriptions.toLocaleString('th-TH') }} ใบสั่งยา · ผู้ป่วยใน
+        {{ hospitalScale.ipdPatientDays.toLocaleString('th-TH') }} วันนอนต่อปี
       </span>
     </div>
   </SlideLayout>
@@ -102,7 +123,7 @@ const factors = [
 }
 
 .case__title {
-  font-size: 16.5px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--ink-strong);
   line-height: 1.3;
@@ -116,16 +137,53 @@ const factors = [
 
 .case__desc {
   margin-top: 9px;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.55;
   color: var(--ink-soft);
-  min-height: 43px;
 }
 
-.case__card :deep(.bars) {
+.case__stats {
   flex: 1;
-  min-height: 0;
-  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 0 8px;
+}
+
+.case__stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--surface-tint);
+  border: 1px solid var(--line-soft);
+}
+
+.case__stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ha-blue-deep);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.case__stat-value--ok {
+  color: var(--ok);
+}
+
+.case__stat-unit {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-faint);
+  margin-left: 3px;
+}
+
+.case__stat-label {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink-soft);
 }
 
 .case__foot {

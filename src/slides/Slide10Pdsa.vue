@@ -2,46 +2,46 @@
 import Icon from '@/components/Icon.vue'
 import SlideLayout from '@/components/SlideLayout.vue'
 import BarCompare from '@/components/charts/BarCompare.vue'
-import { pdsa } from '@/data/metrics'
+import { pdsaTranscribing } from '@/data/metrics'
 
 const steps = [
   {
     key: 'P',
     title: 'Plan',
-    detail: 'พบ Medication Error สูงในยากลุ่ม High Alert วิเคราะห์สาเหตุรากด้วยข้อมูล',
+    detail: 'Transcribing error เกิดจากการคัดลอกคำสั่งด้วยมือและใช้ Copy order ของพยาบาล',
     tone: 'p',
   },
   {
     key: 'D',
     title: 'Do',
-    detail: 'ติดสติกเกอร์แดง Double-check 100% และอบรมพยาบาลทุกหอผู้ป่วย',
+    detail: 'ยกเลิก Copy order เปลี่ยนเป็น Scan order และให้เภสัชกรคัดลอกคำสั่งแทน',
     tone: 'd',
   },
   {
     key: 'C',
     title: 'Check',
-    detail: 'ติดตาม 3 เดือน พบ Error ลดลง 64% จากค่าฐานเดิม',
+    detail: 'Transcribing error ผู้ป่วยในลดจาก 0.42 เหลือ 0.03 ต่อพันวันนอน (ลดลง 93%)',
     tone: 'c',
   },
   {
     key: 'A',
     title: 'Act',
-    detail: 'ขยายผลทุกหอผู้ป่วย และกำหนดเป็นนโยบายมาตรฐานขององค์กร',
+    detail: 'กำหนดเป็นแนวปฏิบัติถาวรทั้ง OPD และ IPD พร้อมต่อยอดแจ้งเตือนอัตโนมัติใน HosXp v4',
     tone: 'a',
   },
 ]
 
 const bars = [
-  { label: 'ก่อน PDSA', value: pdsa.before, color: '#dc3b38', sub: pdsa.unit },
-  { label: 'หลัง PDSA', value: pdsa.after, color: '#1c9e5a', sub: pdsa.unit },
+  { label: 'ก่อน PDSA (2563)', value: pdsaTranscribing.before, color: '#dc3b38', sub: pdsaTranscribing.unit },
+  { label: 'หลัง PDSA (2567)', value: pdsaTranscribing.after, color: '#1c9e5a', sub: pdsaTranscribing.unit },
 ]
 </script>
 
 <template>
   <SlideLayout :n="10">
     <template #head-extra>
-      <span class="chip"><Icon name="refresh" :size="14" />{{ pdsa.period }}</span>
-      <span class="chip chip--ok"><Icon name="award" :size="14" />ขยายผลทุกหอผู้ป่วย</span>
+      <span class="chip"><Icon name="refresh" :size="14" />{{ pdsaTranscribing.period }}</span>
+      <span class="chip chip--ok"><Icon name="award" :size="14" />ขยายผลทั้ง OPD และ IPD</span>
     </template>
 
     <div class="pdsa__flow anim anim-2">
@@ -63,25 +63,28 @@ const bars = [
       <div class="card pdsa__chart anim anim-3">
         <p class="pdsa__chart-title">
           <Icon name="chart" :size="17" />
-          ผลลัพธ์: {{ pdsa.title }}
+          ผลลัพธ์: {{ pdsaTranscribing.title }}
         </p>
-        <BarCompare :items="bars" :height="248" :decimals="1" />
-        <p class="footnote">หน่วย: {{ pdsa.unit }}</p>
+        <BarCompare :items="bars" :height="230" :decimals="2" />
+        <p class="footnote">หน่วย: {{ pdsaTranscribing.unit }} · ข้อมูลผู้ป่วยใน (IPD)</p>
       </div>
 
       <div class="card pdsa__result anim anim-4">
         <p class="pdsa__result-big">
-          <span>-{{ pdsa.reduction }}%</span>
-          ลดลงภายใน 3 เดือน
+          <span>-{{ pdsaTranscribing.reduction }}%</span>
+          ผู้ป่วยใน เหลือ 0.03 ต่อพันวันนอน
         </p>
         <ul class="pdsa__result-list">
-          <li><Icon name="check" :size="14" />ขยายผลครบ 8 หอผู้ป่วย</li>
-          <li><Icon name="check" :size="14" />บรรจุในนโยบายระบบยา ฉบับปรับปรุง 2568</li>
-          <li><Icon name="check" :size="14" />ติดตามต่อเนื่องทุกไตรมาสผ่าน PTC</li>
+          <li>
+            <Icon name="check" :size="14" />ผู้ป่วยนอกก็ลดเช่นกัน: {{ pdsaTranscribing.opdBefore }} เหลือ
+            {{ pdsaTranscribing.opdAfter }} ต่อพันใบสั่งยา
+          </li>
+          <li><Icon name="check" :size="14" />เภสัชกรเห็นคำสั่งแพทย์ชัดเจนจาก Scan order ทุกคำสั่ง</li>
+          <li><Icon name="check" :size="14" />กำหนดเป็นแนวปฏิบัติถาวรและติดตามต่อเนื่องผ่าน PTC</li>
         </ul>
         <div class="pdsa__evidence">
-          <span class="chip chip--muted"><Icon name="folder" :size="13" />รายงานโครงการ PDSA</span>
-          <span class="chip chip--muted"><Icon name="file-text" :size="13" />เอกสารปรับปรุงนโยบาย</span>
+          <span class="chip chip--muted"><Icon name="folder" :size="13" />รายงาน RCA</span>
+          <span class="chip chip--muted"><Icon name="file-text" :size="13" />แนวปฏิบัติ Scan Order</span>
         </div>
       </div>
     </div>
@@ -206,7 +209,7 @@ const bars = [
   display: flex;
   align-items: baseline;
   gap: 10px;
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--ink-soft);
 }
 
