@@ -1,0 +1,25 @@
+{
+  "name": "ptc-ha2026",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "สไลด์นำเสนอระบบยาโรงพยาบาลตามมาตรฐาน HA ฉบับที่ 6 สำหรับทีมสำรวจ สรพ.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/prompt": "^5.3.0",
+    "vue": "^3.5.43",
+    "vue-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "typescript": "5",
+    "vite": "^8.3.4",
+    "vue-tsc": "^3.3.12"
+  }
+}
