@@ -7,7 +7,6 @@ const bullets = [
   'PTC ร่วมกับ รพ.สต. และทีมนำทางคลินิก กำกับดูแลทั้งองค์กร',
   'คัดเลือกบัญชียาจากหลักฐานเชิงประจักษ์และอุบัติการณ์จริง',
   'รายงานความคลาดเคลื่อนต่อคณะกรรมการความเสี่ยงทุกเดือน',
-  'อบรม HAD · บริหารยาวงรอบ · Med Rec · ADR ปีละ 1 ครั้ง',
 ]
 
 const pdca = [
@@ -30,6 +29,22 @@ const pdca = [
         <ul class="ticks anim anim-2">
           <li v-for="text in bullets" :key="text">{{ text }}</li>
         </ul>
+
+        <div class="card card--tint gov__train anim anim-3">
+          <p class="gov__train-title">
+            <Icon name="award" :size="16" />
+            การพัฒนาบุคลากร
+          </p>
+          <div class="gov__train-chips">
+            <span class="chip">HAD</span>
+            <span class="chip">บริหารยาวงรอบ</span>
+            <span class="chip">Med Rec</span>
+            <span class="chip">ADR</span>
+          </div>
+          <p class="gov__train-note">
+            อบรมปีละ 1 ครั้ง · เจ้าหน้าที่ผ่านการประเมินก่อนขึ้นเวรนอกเวลา
+          </p>
+        </div>
 
         <div class="card card--tint gov__pdca anim anim-3">
           <p class="gov__pdca-title">
@@ -71,6 +86,37 @@ const pdca = [
 
 .gov__pdca {
   padding: 14px 16px 15px;
+}
+
+.gov__train {
+  padding: 13px 16px 14px;
+}
+
+.gov__train-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+.gov__train-title svg {
+  color: var(--ha-gold-deep);
+}
+
+.gov__train-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.gov__train-note {
+  margin-top: 9px;
+  font-size: 13px;
+  color: var(--ink-faint);
+  line-height: 1.5;
 }
 
 .gov__pdca-title {
