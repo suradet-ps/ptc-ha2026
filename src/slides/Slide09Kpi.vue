@@ -121,7 +121,9 @@ const trendIcon = { down: 'trend-down', up: 'trend-up', flat: 'trend-flat' } as 
             color="#c9a227"
             label="ตัวชี้วัด RDU ที่ผ่าน"
           />
-          <p class="kpi__donut-note">อีก 1 ข้อ อยู่ระหว่างแก้ไขระบบข้อมูล HDC</p>
+          <p class="kpi__donut-note">
+            อีก {{ rdu.total - rdu.passed }} ข้อ อยู่ระหว่างแก้ไขตามแนวทางที่กำหนด ({{ rdu.period }})
+          </p>
         </div>
 
         <div class="card kpi__stat anim anim-4">

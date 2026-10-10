@@ -34,10 +34,14 @@ export const safetyResults = {
 
 export const rdu = {
   total: 12,
-  passed: 11,
-  failedItem: 'HT ใช้ RAS blockade 2 ชนิดร่วมกัน',
-  failedDetail:
-    'พบผู้ป่วย 1 ราย แพทย์เปลี่ยนยาใน visit เดียวกัน (Enalapril → Losartan) ระบบ HDC นับซ้ำ อยู่ระหว่างแก้ข้อมูล',
+  passed: 9,
+  period: 'ต.ค. 2569',
+  failedItems: [
+    'ยาปฏิชีวนะในโรคติดเชื้อที่ระบบการหายใจช่วงบนและหลอดลมอักเสบเฉียบพลันในผู้ป่วยนอก',
+    'ยาปฏิชีวนะในบาดแผลสดจากอุบัติเหตุ',
+    'ผู้ป่วยนอกโรคหืดได้รับยา inhaled corticosteroid',
+  ],
+  failedDetail: 'อยู่ระหว่างทบทวนแนวทางสั่งใช้ยาและกำกับติดตามผลผ่าน HDC ให้ผ่านเกณฑ์ทุกข้อ',
 }
 
 export const drugInventory = {

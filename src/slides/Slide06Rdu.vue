@@ -5,12 +5,13 @@ import DonutGauge from '@/components/charts/DonutGauge.vue'
 import { rdu } from '@/data/metrics'
 
 const passedPercent = Math.round((rdu.passed / rdu.total) * 1000) / 10
+const failing = rdu.total - rdu.passed
 
 const metrics = [
   {
     label: 'ตัวชี้วัด RDU ผ่าน',
     value: `${rdu.passed}/${rdu.total}`,
-    sub: `ร้อยละ ${passedPercent} · อยู่ระหว่างแก้ไข 1 ข้อ`,
+    sub: `ร้อยละ ${passedPercent} · ไม่ผ่าน ${failing} ข้อ (${rdu.period})`,
     tone: 'warn',
   },
   {
@@ -91,8 +92,11 @@ const bullets = [
           <div class="rdu__failed">
             <p class="rdu__failed-title">
               <Icon name="alert" :size="15" />
-              ข้อที่ไม่ผ่าน: {{ rdu.failedItem }}
+              ข้อที่ไม่ผ่าน {{ failing }} ข้อ · ข้อมูล ณ {{ rdu.period }}
             </p>
+            <ul class="rdu__failed-list">
+              <li v-for="item in rdu.failedItems" :key="item">{{ item }}</li>
+            </ul>
             <p class="rdu__failed-detail">{{ rdu.failedDetail }}</p>
           </div>
         </div>
@@ -220,8 +224,33 @@ const bullets = [
   color: var(--warn);
 }
 
-.rdu__failed-detail {
+.rdu__failed-list {
   margin-top: 6px;
+  display: grid;
+  gap: 4px;
+}
+
+.rdu__failed-list li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #8a6a2a;
+}
+
+.rdu__failed-list li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.52em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--warn);
+}
+
+.rdu__failed-detail {
+  margin-top: 7px;
   font-size: 12.5px;
   line-height: 1.55;
   color: #8a6a2a;
