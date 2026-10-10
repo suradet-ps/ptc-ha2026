@@ -3,13 +3,14 @@ import Icon from '@/components/Icon.vue'
 import LogoMark from '@/components/LogoMark.vue'
 import { config } from '@/data/config'
 
-const evidence = [
-  'คำสั่งแต่งตั้ง PTC / ทีมระบบยา',
-  'แนวทาง High Alert 14 รายการ · นโยบาย RDU',
-  'รายงาน ME (NRLS) · RCA',
-  'ตัวชี้วัดระบบยา ปี 2563-2569',
-  'บัญชียา 306 รายการ · บัญชีสำรองยา',
-  'แผน CQI ตอบข้อเสนอแนะ สรพ.',
+const highlights = [
+  'PTC กำกับดูแลระบบยาทั้งองค์กร',
+  'ME ระดับ E ขึ้นไป และแพ้ยาซ้ำ = 0',
+  'RDU ผ่าน 9/12 พร้อมแผนแก้ไขครบ',
+  'ระบบดิจิทัลของทีมใช้จริง 4 ระบบ',
+  'งานระดับประเทศ 2 ปีซ้อน',
+  'ผ่านมาตรฐานความปลอดภัยด้านยา 2569',
+  'แผน 3 ปีตอบข้อเสนอแนะ สรพ. ครบ',
 ]
 </script>
 
@@ -26,7 +27,7 @@ const evidence = [
           <span class="thanks__rule" />
         </h1>
         <p class="thanks__sub anim anim-3">
-          ทีมระบบยาพร้อมให้ข้อมูลและหลักฐานเพิ่มเติม
+          ทีมระบบยาพร้อมตอบข้อซักถามและให้ข้อมูลเพิ่มเติม
         </p>
 
         <div class="thanks__contacts anim anim-4">
@@ -44,11 +45,11 @@ const evidence = [
 
       <div class="thanks__card anim anim-3">
         <p class="thanks__card-title">
-          <Icon name="folder" :size="17" />
-          หลักฐานพร้อมแสดงต่อทีมสำรวจ
+          <Icon name="clipboard-check" :size="17" />
+          สรุปประเด็นสำคัญ
         </p>
         <ul class="thanks__list">
-          <li v-for="item in evidence" :key="item">
+          <li v-for="item in highlights" :key="item">
             <Icon name="check" :size="14" />
             {{ item }}
           </li>
