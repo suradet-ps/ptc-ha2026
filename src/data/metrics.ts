@@ -2,8 +2,7 @@
    ที่มา: รายงาน II-6 ระบบการจัดการด้านยา และเอกสารตอบข้อเสนอแนะ สรพ. (19-20 ก.พ. 2568)
    ข้อมูล ณ 31 มี.ค. 2567 (คอลัมน์ 2567* เป็นข้อมูลบางส่วนของปี) */
 
-export const dataNote =
-  'ข้อมูล ณ 31 มี.ค. 2567 · ที่มา: รายงาน II-6 ระบบการจัดการด้านยา และเอกสารตอบข้อเสนอแนะ สรพ.'
+export const dataNote = 'ข้อมูล ณ 31 มี.ค. 2567 · ที่มา: รายงาน II-6'
 
 export const years = ['2563', '2564', '2565', '2566', '2567*']
 
@@ -36,9 +35,9 @@ export const safetyResults = {
 export const rdu = {
   total: 12,
   passed: 11,
-  failedItem: 'ผู้ป่วยความดันโลหิตสูงที่ใช้ RAS blockade 2 ชนิดร่วมกัน',
+  failedItem: 'HT ใช้ RAS blockade 2 ชนิดร่วมกัน',
   failedDetail:
-    'วิเคราะห์พบผู้ป่วย 1 ราย แพทย์เปลี่ยนยาใน visit เดียวกัน (Enalapril เป็น Losartan) ระบบ HDC นับเป็นการใช้ 2 ชนิด อยู่ระหว่างประสานงานสารสนเทศแก้ไขข้อมูล',
+    'พบผู้ป่วย 1 ราย แพทย์เปลี่ยนยาใน visit เดียวกัน (Enalapril → Losartan) ระบบ HDC นับซ้ำ อยู่ระหว่างแก้ข้อมูล',
 }
 
 export const drugInventory = {
@@ -58,7 +57,7 @@ export const highAlert = {
 }
 
 export const pdsaTranscribing = {
-  title: 'ลด Transcribing error ด้วย Scan Order และเภสัชกรคัดลอกคำสั่ง',
+  title: 'ลด Transcribing error ด้วย Scan Order',
   before: 0.42,
   after: 0.03,
   reduction: 93,
