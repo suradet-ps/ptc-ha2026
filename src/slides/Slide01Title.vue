@@ -31,7 +31,7 @@ import { config } from '@/data/config'
 
       <div class="title__right anim anim-3">
         <div class="title__card">
-          <LogoMark :size="96" />
+          <LogoMark :size="150" />
           <p class="title__hospital">{{ config.hospitalName }}</p>
           <p class="title__team">{{ config.teamName }}</p>
           <div class="title__badges">
@@ -87,7 +87,7 @@ import { config } from '@/data/config'
 
 .title__main {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr 460px;
   gap: 44px;
   align-items: center;
   flex: 1;
@@ -170,38 +170,38 @@ import { config } from '@/data/config'
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 13px;
-  padding: 30px 26px 26px;
-  border-radius: 20px;
+  gap: 16px;
+  padding: 46px 38px 42px;
+  border-radius: 24px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(6px);
 }
 
 .title__hospital {
-  font-size: 21px;
+  font-size: 27px;
   font-weight: 600;
   color: #ffffff;
-  margin-top: 4px;
+  margin-top: 6px;
   text-align: center;
 }
 
 .title__team {
-  font-size: 15px;
+  font-size: 16.5px;
   color: #a9c9e6;
-  margin-top: -6px;
+  margin-top: -8px;
 }
 
 .title__badges {
   display: flex;
   gap: 9px;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
 .title__badge {
-  font-size: 13.5px;
+  font-size: 14.5px;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: 999px;
   background: rgba(13, 95, 168, 0.5);
   border: 1px solid rgba(140, 195, 240, 0.4);
