@@ -114,9 +114,9 @@ export const deck: readonly SlideMeta[] = [
     standardRef: 'II-6.1 ข (4) · II-6.2 ก (3)',
     minutes: 1.5,
     notes:
-      'ระบบ HosXp ของเราเตือนข้อควรระวังและข้อห้ามใช้ เช่น ผู้ป่วย G6PD ตั้งครรภ์ และ Warfarin มีระบบ scan order และเภสัชกรทบทวนทุกคำสั่ง และมีแผนต่อยอดสู่ AI-Assisted Drug Alert ตามข้อเสนอแนะครับ/ค่ะ',
+      'ระบบ HOSxP ของเราเตือนข้อควรระวังและข้อห้ามใช้ เช่น ผู้ป่วย G6PD ตั้งครรภ์ และ Warfarin มีระบบ scan order และเภสัชกรทบทวนทุกคำสั่ง และมีแผนต่อยอดสู่ AI-Assisted Drug Alert ตามข้อเสนอแนะครับ/ค่ะ',
     evidence: [
-      'ระบบ HosXp: Drug Alert, Scan Order',
+      'ระบบ HOSxP: Drug Alert, Scan Order',
       'แบบบันทึกการทบทวนคำสั่งใช้ยาของเภสัชกร',
       'แผน CQI: AI-Assisted Drug Alert',
     ],

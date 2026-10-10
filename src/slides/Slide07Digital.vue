@@ -6,7 +6,7 @@ import type { IconName } from '@/components/icons'
 const features: readonly { icon: IconName; title: string; detail: string }[] = [
   {
     icon: 'monitor',
-    title: 'HosXp Drug Alert',
+    title: 'HOSxP Drug Alert',
     detail: 'เตือนข้อห้ามใช้: G6PD · ตั้งครรภ์ · Warfarin',
   },
   {
@@ -35,14 +35,14 @@ const planItems = [
   { icon: 'bot' as const, label: 'AI-Assisted Drug Alert', target: '≥ 80%' },
   { icon: 'flask' as const, label: 'Online ADR Reporting', target: '+30%' },
   { icon: 'clipboard-check' as const, label: 'Electronic Med Rec (EMR)', target: '≥ 95%' },
-  { icon: 'refresh' as const, label: 'HosXp v4 แจ้งเตือน Scan อัตโนมัติ', target: 'ตามแผน' },
+  { icon: 'refresh' as const, label: 'HOSxP v4 แจ้งเตือน Scan อัตโนมัติ', target: 'ตามแผน' },
 ]
 </script>
 
 <template>
   <SlideLayout :n="7">
     <template #head-extra>
-      <span class="chip chip--navy"><Icon name="database" :size="14" />HosXp ใช้จริงทุกจุดบริการ</span>
+      <span class="chip chip--navy"><Icon name="database" :size="14" />HOSxP ใช้จริงทุกจุดบริการ</span>
       <span class="chip"><Icon name="bot" :size="14" />แผน AI-Assisted Alert ≥ 80%</span>
     </template>
 
@@ -61,7 +61,7 @@ const planItems = [
         <div class="card dig__mock anim anim-3">
           <div class="dig__mock-bar">
             <span class="dig__mock-dots"><i /><i /><i /></span>
-            <span class="dig__mock-name">HosXp · Drug Alert</span>
+            <span class="dig__mock-name">HOSxP · Drug Alert</span>
             <span class="dig__mock-live"><i />LIVE</span>
           </div>
           <div class="dig__alert">

@@ -44,7 +44,7 @@ const phases: readonly Phase[] = [
     items: [
       'AI-Assisted Drug Alert ≥ 80%',
       'CPOE สั่งยาทุกจุดบริการ',
-      'HosXp v4 แจ้งเตือน Scan order อัตโนมัติ',
+      'HOSxP v4 แจ้งเตือน Scan order อัตโนมัติ',
     ],
     milestone: 'Milestone: AI + ความปลอดภัยครบวงจร',
     tone: 'red',

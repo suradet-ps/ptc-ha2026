@@ -5,7 +5,7 @@ import { hospitalScale, safetyResults } from '@/data/metrics'
 
 const factors = [
   { icon: 'users' as const, label: `ทีมเภสัชกร ${hospitalScale.pharmacists} คน ทำงานเชิงรุก` },
-  { icon: 'database' as const, label: 'เทคโนโลยี HosXp' },
+  { icon: 'database' as const, label: 'เทคโนโลยี HOSxP' },
   { icon: 'network' as const, label: `เครือข่าย รพ.สต. ${hospitalScale.subDistricts} แห่ง` },
 ]
 </script>
