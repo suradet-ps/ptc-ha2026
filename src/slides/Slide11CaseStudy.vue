@@ -1,97 +1,78 @@
 <script setup lang="ts">
 import Icon from '@/components/Icon.vue'
 import SlideLayout from '@/components/SlideLayout.vue'
-import { hospitalScale, safetyResults } from '@/data/metrics'
 
-const factors = [
-  { icon: 'users' as const, label: `ทีมเภสัชกร ${hospitalScale.pharmacists} คน ทำงานเชิงรุก` },
-  { icon: 'database' as const, label: 'เทคโนโลยี HOSxP' },
-  { icon: 'network' as const, label: `เครือข่าย รพ.สต. ${hospitalScale.subDistricts} แห่ง` },
+const showcases = [
+  {
+    year: '2568',
+    src: '/images/moph-2025.jpeg',
+    alt: 'นำเสนอผลงานนวัตกรรม งานประชุมวิชาการสาธารณสุข ประจำปี 2568',
+  },
+  {
+    year: '2569',
+    src: '/images/moph-2026.jpeg',
+    alt: 'นำเสนอผลงานนวัตกรรม งานประชุมวิชาการสาธารณสุข ประจำปี 2569',
+  },
 ]
 </script>
 
 <template>
   <SlideLayout :n="11">
     <template #head-extra>
-      <span class="chip chip--ok"><Icon name="award" :size="14" />ผลงานเด่นจากรายงาน II-6</span>
+      <span class="chip chip--gold"><Icon name="award" :size="14" />ตัวแทนเขตสุขภาพที่ 4</span>
+      <span class="chip chip--ok"><Icon name="check-circle" :size="14" />เวทีระดับประเทศ 2 ปีซ้อน</span>
     </template>
 
     <div class="case__grid anim anim-2">
       <article class="card case__card">
         <header class="case__head">
-          <span class="icon-badge icon-badge--red"><Icon name="user-check" :size="19" /></span>
+          <span class="icon-badge icon-badge--gold"><Icon name="award" :size="19" /></span>
           <div>
-            <h3 class="case__title">บริบาลเภสัชกรรมผู้ป่วยใน + Med Rec</h3>
-            <p class="case__period">ผู้ป่วยในทุกรายที่รับนอน</p>
+            <h3 class="case__title">นำเสนอผลงานนวัตกรรมระดับประเทศ</h3>
+            <p class="case__period">งานประชุมวิชาการสาธารณสุข ประจำปี 2568 และ 2569</p>
           </div>
         </header>
         <p class="case__desc">
-          เภสัชกรประสานรายการยาเดิม สอนเทคนิคพิเศษ ประเมิน ADR และค้นหาปัญหาการใช้ยาก่อนจำหน่าย
+          กลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์ ได้รับคัดเลือกเป็นตัวแทนเขตสุขภาพที่ 4
+          นำเสนอผลงานวิชาการนวัตกรรมบนเวทีระดับประเทศ 2 ปีซ้อน
         </p>
-
-        <div class="case__stats">
-          <div class="case__stat">
-            <span class="case__stat-value case__stat-value--ok">{{ safetyResults.levelEUp }}</span>
-            <span class="case__stat-label">ME ระดับ E ขึ้นไป (ครั้ง)</span>
-          </div>
-          <div class="case__stat">
-            <span class="case__stat-value case__stat-value--ok">{{ safetyResults.repeatedAllergy }}</span>
-            <span class="case__stat-label">แพ้ยาซ้ำ (ครั้ง)</span>
-          </div>
-          <div class="case__stat">
-            <span class="case__stat-value">100%</span>
-            <span class="case__stat-label">ผู้ป่วยในที่ทำ Med Rec</span>
-          </div>
+        <div class="case__shots">
+          <figure v-for="s in showcases" :key="s.year" class="case__shot">
+            <img :src="s.src" :alt="s.alt" />
+            <figcaption class="case__shot-year">ปี {{ s.year }}</figcaption>
+          </figure>
         </div>
-
-        <footer class="case__foot">
-          <span class="chip chip--ok"><Icon name="check" :size="13" />ต่อเนื่อง 5 ปี (2563 - 2567)</span>
-        </footer>
       </article>
 
       <article class="card case__card">
         <header class="case__head">
-          <span class="icon-badge icon-badge--navy"><Icon name="heart-pulse" :size="19" /></span>
+          <span class="icon-badge icon-badge--navy"><Icon name="users" :size="19" /></span>
           <div>
-            <h3 class="case__title">เภสัชกรออกหน่วยจ่ายยาที่ รพ.สต.</h3>
-            <p class="case__period">นำร่อง รพ.สต.นิยมชัย · เดือนละ 1 ครั้ง</p>
+            <h3 class="case__title">โรงพยาบาลโคกเจริญศึกษาดูงาน</h3>
+            <p class="case__period">แลกเปลี่ยนเรียนรู้การใช้งานโปรแกรม INVS</p>
           </div>
         </header>
         <p class="case__desc">
-          แพทย์ออกตรวจพร้อมเภสัชกรจ่ายยา ต่อยอด Ambulatory Care ในคลินิกโรคเรื้อรัง
-          ค้นหายาเหลือใช้ก่อนพบแพทย์
+          โรงพยาบาลโคกเจริญเข้าศึกษาดูงานการใช้งานโปรแกรม INVS ระบบจัดซื้อและบริหารคลังเวชภัณฑ์ยา
+          ของโรงพยาบาลสระโบสถ์ เพื่อนำไปปรับใช้ต่อยอดในพื้นที่
         </p>
-
-        <div class="case__stats">
-          <div class="case__stat">
-            <span class="case__stat-value">1<span class="case__stat-unit">ครั้ง/เดือน</span></span>
-            <span class="case__stat-label">ออกหน่วยปฐมภูมิ</span>
-          </div>
-          <div class="case__stat">
-            <span class="case__stat-value">{{ hospitalScale.subDistricts }}<span class="case__stat-unit">แห่ง</span></span>
-            <span class="case__stat-label">รพ.สต. ในห่วงโซ่ความเย็นวัคซีน</span>
-          </div>
-          <div class="case__stat">
-            <span class="case__stat-value">4<span class="case__stat-unit">คลินิก</span></span>
-            <span class="case__stat-label">Ambulatory Care โรคเรื้อรัง</span>
-          </div>
+        <div class="case__photo">
+          <img src="/images/invs-meet.jpeg" alt="โรงพยาบาลโคกเจริญศึกษาดูงานการใช้งานโปรแกรม INVS" />
         </div>
-
         <footer class="case__foot">
-          <span class="chip chip--navy"><Icon name="video" :size="13" />แพทย์ + เภสัชกรพร้อมกันในหน่วยเดียว</span>
+          <span class="chip chip--navy"><Icon name="package" :size="13" />INVS · จัดซื้อและบริหารคลังเวชภัณฑ์ยา</span>
         </footer>
       </article>
     </div>
 
     <div class="case__strip anim anim-3">
-      <span class="case__strip-label">ปัจจัยความสำเร็จ:</span>
-      <span v-for="f in factors" :key="f.label" class="chip">
-        <Icon :name="f.icon" :size="13" />{{ f.label }}
+      <span class="case__strip-label">
+        <Icon name="sparkle" :size="15" />
+        ความภาคภูมิใจของกลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์
       </span>
       <span class="case__strip-note">
         <Icon name="check-circle" :size="14" />
-        ผู้ป่วยนอก {{ hospitalScale.opdPrescriptions.toLocaleString('th-TH') }} ใบสั่งยา · ผู้ป่วยใน
-        {{ hospitalScale.ipdPatientDays.toLocaleString('th-TH') }} วันนอนต่อปี
+        นวัตกรรมที่สร้างชื่อเสียงและความเชื่อมั่นในระดับประเทศ
       </span>
     </div>
   </SlideLayout>
@@ -140,67 +121,87 @@ const factors = [
   color: var(--ink-soft);
 }
 
-.case__stats {
+.case__shots {
   flex: 1;
+  min-height: 0;
+  margin-top: 11px;
   display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 12px 0 8px;
+  gap: 10px;
 }
 
-.case__stat {
+.case__shot {
+  position: relative;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 10px 12px;
+  min-width: 0;
+  margin: 0;
   border-radius: 12px;
-  background: var(--surface-tint);
+  overflow: hidden;
   border: 1px solid var(--line-soft);
+  background: var(--surface-tint);
 }
 
-.case__stat-value {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--ha-blue-deep);
-  line-height: 1.1;
-  font-variant-numeric: tabular-nums;
+.case__shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
-.case__stat-value--ok {
-  color: var(--ok);
-}
-
-.case__stat-unit {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink-faint);
-  margin-left: 3px;
-}
-
-.case__stat-label {
+.case__shot-year {
+  position: absolute;
+  left: 9px;
+  bottom: 9px;
+  padding: 3px 11px;
+  border-radius: 999px;
   font-size: 12px;
-  line-height: 1.4;
-  color: var(--ink-soft);
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(7, 38, 63, 0.72);
+}
+
+.case__photo {
+  flex: 1;
+  min-height: 0;
+  margin-top: 11px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  background: var(--surface-tint);
+}
+
+.case__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .case__foot {
   display: flex;
   gap: 8px;
-  padding-top: 8px;
+  padding-top: 9px;
 }
 
 .case__strip {
   margin-top: 12px;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 12px;
 }
 
 .case__strip-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--ink-soft);
+  color: var(--ha-gold-deep);
+}
+
+.case__strip-label svg {
+  color: var(--ha-gold-deep);
 }
 
 .case__strip-note {
