@@ -2,51 +2,63 @@
 import Icon from '@/components/Icon.vue'
 import SlideLayout from '@/components/SlideLayout.vue'
 import TrendChart from '@/components/charts/TrendChart.vue'
-import { medicationError, medicationSafety } from '@/data/metrics'
+import { highAlert, medErrorIpd, medErrorOpd, safetyResults, years, dataNote } from '@/data/metrics'
 
 const blocks = [
   {
     icon: 'alert' as const,
     tone: 'icon-badge--red',
     title: 'High Alert Drugs',
-    detail: 'Labeling แยกสี · Double-check ทุกครั้ง · จัดเก็บแยกโซน',
-    chip: `${medicationSafety.highAlertUnits} รายการ`,
+    detail: `แนวทางสั่งใช้เหมือนกันทั้งองค์กร · ระดับ 1 (G-I): ${highAlert.level1.join(' · ')}`,
+    chip: `${highAlert.total} รายการ`,
     chipCls: 'chip--red',
   },
   {
     icon: 'pill' as const,
     tone: 'icon-badge--gold',
     title: 'Look-alike / Sound-alike',
-    detail: 'สติกเกอร์เตือนบนกล่องยา · จัดเก็บห่างกัน · แยกความแรง',
-    chip: `${medicationSafety.lasaPairs} คู่ยา`,
+    detail:
+      'จัดเก็บห่างกัน · สติ๊กเกอร์เตือนชื่อคล้าย · ตัวอย่างจริง Metformin/Norfloxacin, Allopurinol/Enalapril แก้โดยเปลี่ยนบริษัท',
+    chip: 'แก้ไขเชิงระบบ',
     chipCls: 'chip--gold',
   },
   {
     icon: 'clipboard-check' as const,
     tone: 'icon-badge',
     title: 'Medication Reconciliation',
-    detail: 'ทบทวนยาครบ 100% ที่ Admission / Transfer / Discharge',
-    chip: '100%',
+    detail:
+      'ผู้ป่วยในทุกรายที่รับนอน · สอบถามยาเดิมผ่านไลน์กลุ่มจังหวัดลพบุรี หรือโทรศัพท์ข้ามจังหวัด',
+    chip: '100% ผู้ป่วยใน',
     chipCls: 'chip--ok',
   },
   {
     icon: 'flask' as const,
     tone: 'icon-badge--navy',
-    title: 'ADR Monitoring',
-    detail: 'รายงานผ่าน Thai Vigibase · วิเคราะห์สาเหตุเชิงระบบทุกราย',
-    chip: `${medicationSafety.adrReports} ราย/ปี`,
+    title: 'การรายงานและ RCA',
+    detail:
+      'รายงานผ่าน NRLS สู่คณะกรรมการความเสี่ยงทุกเดือน · ทบทวน RCA ทุกเหตุการณ์ · แผน Online ADR',
+    chip: 'RCA ทุกเหตุการณ์',
     chipCls: 'chip--navy',
   },
 ]
 
-const medRecNodes = ['Admission', 'Transfer', 'Discharge']
+const medRecNodes = ['Admission', 'ทบทวนระหว่างนอน', 'Discharge']
+
+const series = [
+  { name: 'ผู้ป่วยนอก (Prescribing)', color: '#fa0f0c', data: medErrorOpd.prescribing },
+  { name: 'ผู้ป่วยใน (Prescribing)', color: '#0d5fa8', data: medErrorIpd.prescribing },
+]
 </script>
 
 <template>
   <SlideLayout :n="5">
     <template #head-extra>
-      <span class="chip chip--red"><Icon name="alert" :size="14" />High Alert {{ medicationSafety.highAlertUnits }} รายการ</span>
-      <span class="chip"><Icon name="flask" :size="14" />ADR {{ medicationSafety.adrReports }} ราย/ปี</span>
+      <span class="chip chip--red">
+        <Icon name="alert" :size="14" />High Alert {{ highAlert.total }} รายการ (ระดับ 1: {{ highAlert.level1Count }})
+      </span>
+      <span class="chip chip--ok">
+        <Icon name="check" :size="14" />ระดับ E ขึ้นไป {{ safetyResults.levelEUp }} ครั้ง
+      </span>
     </template>
 
     <div class="split--wide-right saf__body">
@@ -73,7 +85,7 @@ const medRecNodes = ['Admission', 'Transfer', 'Discharge']
             <template v-for="(node, i) in medRecNodes" :key="node">
               <div class="saf__medrec-node">
                 <b>{{ node }}</b>
-                <span>ทบทวน 100%</span>
+                <span>ผู้ป่วยในทุกราย</span>
               </div>
               <Icon v-if="i < medRecNodes.length - 1" name="arrow-right" :size="18" class="saf__medrec-arrow" />
             </template>
@@ -84,20 +96,19 @@ const medRecNodes = ['Admission', 'Transfer', 'Discharge']
           <div class="saf__chart-head">
             <p class="saf__chart-title">
               <Icon name="trend-down" :size="17" />
-              แนวโน้ม Medication Error
+              แนวโน้ม Prescribing error
             </p>
-            <span class="chip chip--ok"><Icon name="check" :size="13" />ลดลงต่อเนื่อง 5 ปี</span>
+            <span class="chip chip--ok"><Icon name="check" :size="13" />ต่ำกว่าเป้าหมายทุกปี</span>
           </div>
           <TrendChart
-            :data="medicationError.series"
-            :labels="medicationError.years"
-            :target="medicationError.target"
-            :target-label="medicationError.targetLabel"
-            :unit="''"
-            :height="216"
-            color="#fa0f0c"
+            :series="series"
+            :labels="years"
+            :target="medErrorOpd.target"
+            target-label="เป้าหมาย ≤ 5"
+            :height="204"
+            :decimals="2"
           />
-          <p class="footnote">หน่วย: {{ medicationError.unit }} · วิเคราะห์สาเหตุเชิงระบบทุกรายผ่าน RM & Patient Safety</p>
+          <p class="footnote">หน่วย: OPD ต่อ 1,000 ใบสั่งยา · IPD ต่อ 1,000 วันนอน · {{ dataNote }}</p>
         </div>
       </div>
     </div>
@@ -146,7 +157,7 @@ const medRecNodes = ['Admission', 'Transfer', 'Discharge']
 
 .saf__card-detail {
   margin-top: 5px;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--ink-soft);
 }
@@ -186,7 +197,7 @@ const medRecNodes = ['Admission', 'Transfer', 'Discharge']
 
 .saf__medrec-node b {
   display: block;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--ink-strong);
 }

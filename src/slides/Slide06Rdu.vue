@@ -1,43 +1,44 @@
 <script setup lang="ts">
 import Icon from '@/components/Icon.vue'
 import SlideLayout from '@/components/SlideLayout.vue'
-import TrendChart from '@/components/charts/TrendChart.vue'
-import { antibioticDdd, amsCompliance, rduScore } from '@/data/metrics'
+import DonutGauge from '@/components/charts/DonutGauge.vue'
+import { rdu } from '@/data/metrics'
+
+const passedPercent = Math.round((rdu.passed / rdu.total) * 1000) / 10
 
 const metrics = [
   {
-    label: 'RDU Score',
-    value: `${rduScore.latest}%`,
-    sub: 'เป้าหมาย ≥ 70% · เฝ้าติดตาม',
+    label: 'ตัวชี้วัด RDU ผ่าน',
+    value: `${rdu.passed}/${rdu.total}`,
+    sub: `ร้อยละ ${passedPercent} · อยู่ระหว่างแก้ไข 1 ข้อ`,
     tone: 'warn',
   },
   {
-    label: 'Antibiotic Use (DDD)',
-    value: antibioticDdd.latest.toFixed(1),
-    sub: `ลดลง ${Math.abs(antibioticDdd.change)}% จากปี 2564`,
+    label: 'ยาปฏิชีวนะนอกบัญชี',
+    value: '100%',
+    sub: 'มีใบกำกับ Consult หรือผล Sensitivity ทุกครั้ง',
     tone: 'ok',
   },
   {
-    label: 'AMS Compliance',
-    value: `${amsCompliance.latest}%`,
-    sub: 'ทบทวนใบสั่งยาตามแนวทางครบถ้วน',
+    label: 'การทบทวนคำสั่งโดยเภสัชกร',
+    value: 'ทุกเคส',
+    sub: 'โทรปรึกษาแพทย์ทันทีเมื่อพบปัญหาการสั่งใช้ยา',
     tone: 'ok',
   },
 ]
 
 const bullets = [
-  'ทีม AMS สหสาขาวิชาชีพ: แพทย์ เภสัชกร พยาบาล และจุลชีววิทยา ทบทวนใบสั่งยารายวัน',
-  'Antibiotic Guideline เฉพาะโรงพยาบาล อิงผลเพาะเชื้อและ Antibiogram ล่าสุด',
-  'แจ้งเตือนผ่านระบบ IT ทันทีเมื่อสั่งยาผิดแนวทาง (Prospective Audit)',
-  'ทบทวนและ de-escalation ตามผลเพาะเชื้อ พร้อมติดตามผลลัพธ์รายไตรมาส',
+  'PTC วางแนวทางสั่งใช้ยาตาม 12 ตัวชี้วัดการใช้ยาสมเหตุผล และทบทวนผลผ่าน HDC',
+  'ยาปฏิชีวนะนอกบัญชีโรงพยาบาล ต้องมีใบกำกับ Consult แพทย์เฉพาะทาง หรือผลเพาะเชื้อ',
+  'เภสัชกรทบทวนคำสั่งใช้ยาทุกเคสก่อนส่งมอบยา ลดความคลาดเคลื่อนจากการสั่งใช้ยา',
 ]
 </script>
 
 <template>
   <SlideLayout :n="6">
     <template #head-extra>
-      <span class="chip chip--navy"><Icon name="users" :size="14" />ทีม AMS สหสาขา</span>
-      <span class="chip"><Icon name="calendar-check" :size="14" />ทบทวนรายวัน</span>
+      <span class="chip chip--navy"><Icon name="users" :size="14" />กำกับโดย PTC</span>
+      <span class="chip"><Icon name="gauge" :size="14" />ประเมินผ่าน HDC</span>
     </template>
 
     <div class="rdu__metrics anim anim-2">
@@ -57,13 +58,16 @@ const bullets = [
       <div class="stack rdu__left">
         <ul class="ticks anim anim-3">
           <li v-for="text in bullets" :key="text">{{ text }}</li>
-          <li class="rdu__evidence">หลักฐาน: นโยบาย AMS · รายงาน RDU · Antibiotic Guideline</li>
+          <li class="rdu__evidence">
+            หลักฐาน: รายงานตัวชี้วัด RDU 12 ข้อ · แนวทางสั่งยาปฏิชีวนะนอกบัญชี · รายงานทบทวนคำสั่งใช้ยา
+          </li>
         </ul>
 
         <div class="card card--tint rdu__callout anim anim-4">
-          <Icon name="network" :size="17" />
+          <Icon name="trend-down" :size="17" />
           <span>
-            เชื่อมผลเพาะเชื้อ (Antibiogram) สู่แนวทางรักษา และทบทวน Guideline ปีละ 1 ครั้ง
+            ผลลัพธ์: ME prescribing ครึ่งปี 2567 ผู้ป่วยนอก 2.01 และผู้ป่วยใน 1.23 ต่อ 1,000
+            ต่ำกว่าเป้าหมาย ≤ 5
           </span>
         </div>
       </div>
@@ -71,20 +75,28 @@ const bullets = [
       <div class="card rdu__chart anim anim-4">
         <div class="rdu__chart-head">
           <p class="rdu__chart-title">
-            <Icon name="trend-down" :size="17" />
-            แนวโน้มการใช้ยาต้านจุลชีพ
+            <Icon name="gauge" :size="17" />
+            ผลตัวชี้วัด RDU 12 ข้อ
           </p>
-          <span class="chip chip--ok"><Icon name="leaf" :size="13" />ลด AMR อย่างยั่งยืน</span>
+          <span class="chip chip--gold"><Icon name="gauge" :size="13" />ผ่าน {{ rdu.passed }} ข้อ</span>
         </div>
-        <TrendChart
-          :data="antibioticDdd.series"
-          :labels="antibioticDdd.years"
-          :unit="''"
-          :height="226"
-          color="#0d5fa8"
-          :decimals="1"
-        />
-        <p class="footnote">หน่วย: {{ antibioticDdd.unit }} · ลดลง {{ Math.abs(antibioticDdd.change) }}% ใน 5 ปี</p>
+
+        <div class="rdu__result">
+          <DonutGauge
+            :value="passedPercent"
+            :value-text="`${rdu.passed}/${rdu.total}`"
+            :size="132"
+            color="#c9a227"
+            label="ตัวชี้วัดที่ผ่าน"
+          />
+          <div class="rdu__failed">
+            <p class="rdu__failed-title">
+              <Icon name="alert" :size="15" />
+              ข้อที่ไม่ผ่าน: {{ rdu.failedItem }}
+            </p>
+            <p class="rdu__failed-detail">{{ rdu.failedDetail }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </SlideLayout>
@@ -138,7 +150,7 @@ const bullets = [
 
 .rdu__callout svg {
   flex: none;
-  color: var(--ha-blue);
+  color: var(--ok);
 }
 
 .rdu__evidence {
@@ -154,7 +166,7 @@ const bullets = [
 .rdu__chart {
   display: flex;
   flex-direction: column;
-  padding: 14px 18px 10px;
+  padding: 14px 18px 12px;
 }
 
 .rdu__chart-head {
@@ -162,7 +174,6 @@ const bullets = [
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 2px;
 }
 
 .rdu__chart-title {
@@ -175,6 +186,45 @@ const bullets = [
 }
 
 .rdu__chart-title svg {
-  color: var(--ok);
+  color: var(--ha-gold-deep);
+}
+
+.rdu__result {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 10px;
+}
+
+.rdu__failed {
+  flex: 1;
+  background: var(--warn-soft);
+  border: 1px solid #f2ddb4;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.rdu__failed-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #9a6a00;
+  line-height: 1.45;
+}
+
+.rdu__failed-title svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--warn);
+}
+
+.rdu__failed-detail {
+  margin-top: 6px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #8a6a2a;
 }
 </style>

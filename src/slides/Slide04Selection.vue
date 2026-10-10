@@ -1,31 +1,31 @@
 <script setup lang="ts">
 import Icon from '@/components/Icon.vue'
 import SlideLayout from '@/components/SlideLayout.vue'
-import TrendChart from '@/components/charts/TrendChart.vue'
+import DonutGauge from '@/components/charts/DonutGauge.vue'
 import type { IconName } from '@/components/icons'
-import { drugShortage } from '@/data/metrics'
+import { drugInventory } from '@/data/metrics'
 
 const steps: readonly { icon: IconName; label: string; accent?: boolean }[] = [
   { icon: 'scale', label: 'ทบทวนหลักฐาน' },
   { icon: 'users', label: 'กลั่นกรองโดย PTC' },
   { icon: 'file-text', label: 'บัญชียาโรงพยาบาล', accent: true },
-  { icon: 'package', label: 'จัดหา / สัญญา' },
+  { icon: 'package', label: 'จัดหา / ยืม รพ.แม่ข่าย' },
   { icon: 'chart', label: 'ติดตามผล' },
 ]
 
 const bullets = [
-  'ทบทวนบัญชียาตามหลักฐานเชิงประจักษ์และแนวทางสมาคมวิชาชีพ',
-  'ระบบ Drug Shortage Alert แจ้งเตือนล่วงหน้าก่อนยาขาด',
-  'สำรองยา Emergency Drugs ครบ 100% พร้อมใช้ตลอด 24 ชั่วโมง',
-  'ควบคุม Cold Chain ตามมาตรฐาน GDP ตลอดห่วงโซ่การจัดหา',
+  'PTC ทบทวนบัญชียาเข้า-ออกจากหลักฐานเชิงประจักษ์และอุบัติการณ์ความคลาดเคลื่อน',
+  'ยาขาดแคลนหรือจำเป็นเร่งด่วน ยืมจากโรงพยาบาลแม่ข่าย เพื่อให้มียาพร้อมใช้เสมอ',
+  'สำรองยา 2 จุดบริการ (ห้องฉุกเฉิน + หอผู้ป่วยใน) และ Emergency box 2 กล่อง ใช้เมื่อห้องยาปิด',
+  'ยาเสพติดจัดเก็บแยก มิดชิด ล็อกกุญแจ จำกัดการเข้าถึง และเบิกคืนสต๊อกวันถัดไป',
 ]
 </script>
 
 <template>
   <SlideLayout :n="4">
     <template #head-extra>
-      <span class="chip chip--ok"><Icon name="check" :size="14" />Emergency Drugs 100%</span>
-      <span class="chip"><Icon name="thermometer" :size="14" />Cold Chain ตามมาตรฐาน GDP</span>
+      <span class="chip chip--ok"><Icon name="check" :size="14" />เวชภัณฑ์ยา {{ drugInventory.total }} รายการ</span>
+      <span class="chip"><Icon name="package" :size="14" />Emergency box {{ drugInventory.emergencyBoxes }} กล่อง</span>
     </template>
 
     <div class="flow anim anim-2">
@@ -45,43 +45,51 @@ const bullets = [
         <ul class="ticks anim anim-3">
           <li v-for="text in bullets" :key="text">{{ text }}</li>
           <li class="sel__evidence">
-            หลักฐาน: บัญชียา · รายงานการขาดยา · สัญญาจัดซื้อจัดจ้าง
+            หลักฐาน: บัญชียา · บัญชีสำรองยา · บันทึกตรวจสต๊อก · สัญญาจัดซื้อจัดจ้าง
           </li>
         </ul>
-
-        <div class="card card--tint sel__criteria anim anim-4">
-          <p class="sel__criteria-title">
-            <Icon name="scale" :size="16" />
-            เกณฑ์การคัดเลือกยาที่ PTC ใช้พิจารณา
-          </p>
-          <div class="sel__criteria-chips">
-            <span class="chip">ประสิทธิผลทางคลินิก</span>
-            <span class="chip">ความปลอดภัย</span>
-            <span class="chip">ต้นทุน-ประสิทธิผล</span>
-            <span class="chip">ความมั่นคงของ Supply</span>
-          </div>
-        </div>
       </div>
 
       <div class="card sel__chart anim anim-4">
         <div class="sel__chart-head">
           <p class="sel__chart-title">
-            <Icon name="trend-down" :size="17" />
-            แนวโน้มวันขาดยาเฉลี่ยต่อปี
+            <Icon name="check-circle" :size="17" />
+            บัญชียาโรงพยาบาล
           </p>
           <span class="chip chip--ok">
-            <Icon name="check" :size="13" />ผ่านเป้าหมาย {{ drugShortage.latest }} วัน
+            <Icon name="check" :size="13" />ตรวจสต๊อกเดือนละ 1 ครั้ง
           </span>
         </div>
-        <TrendChart
-          :data="drugShortage.series"
-          :labels="drugShortage.years"
-          :target="drugShortage.target"
-          :target-label="drugShortage.targetLabel"
-          :unit="''"
-          :height="238"
-          color="#2b3991"
-        />
+
+        <div class="sel__stats">
+          <DonutGauge
+            :value="drugInventory.edPercent"
+            :value-text="`${drugInventory.edPercent}%`"
+            :size="122"
+            color="#0d5fa8"
+            label="ยาที่อยู่ในบัญชียาหลักแห่งชาติ (ED)"
+          />
+          <div class="sel__stat-list">
+            <div class="sel__stat">
+              <span class="sel__stat-value">{{ drugInventory.total }}<small>รายการ</small></span>
+              <span class="sel__stat-label">เวชภัณฑ์ยาทั้งหมด</span>
+            </div>
+            <div class="sel__stat">
+              <span class="sel__stat-value">
+                {{ drugInventory.edPercent }}<small class="sel__colon">:</small>{{ drugInventory.nedPercent }}
+              </span>
+              <span class="sel__stat-label">สัดส่วน ED : NED</span>
+            </div>
+            <div class="sel__stat">
+              <span class="sel__stat-value">{{ drugInventory.reservePoints }}<small>จุด</small></span>
+              <span class="sel__stat-label">จุดสำรองยานอกเวลาห้องยาปิด</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="footnote">
+          ปรับปรุงรายการสำรองยาทุกปีตามสถิติการใช้หลังห้องยาปิด · {{ drugInventory.stockCheck }}
+        </p>
       </div>
     </div>
   </SlideLayout>
@@ -93,32 +101,8 @@ const bullets = [
 }
 
 .sel__left {
-  justify-content: space-between;
+  justify-content: center;
   gap: 14px;
-}
-
-.sel__criteria {
-  padding: 13px 16px 15px;
-}
-
-.sel__criteria-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14.5px;
-  font-weight: 600;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
-}
-
-.sel__criteria-title svg {
-  color: var(--ha-blue);
-}
-
-.sel__criteria-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
 }
 
 .sel__evidence {
@@ -135,7 +119,7 @@ const bullets = [
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 16px 18px 10px;
+  padding: 16px 20px 12px;
 }
 
 .sel__chart-head {
@@ -143,7 +127,7 @@ const bullets = [
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 }
 
 .sel__chart-title {
@@ -157,5 +141,48 @@ const bullets = [
 
 .sel__chart-title svg {
   color: var(--ok);
+}
+
+.sel__stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.sel__colon {
+  margin: 0 4px;
+}
+
+.sel__stat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  flex: 1;
+}
+
+.sel__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.sel__stat-value {
+  font-size: 23px;
+  font-weight: 700;
+  color: var(--ha-blue-deep);
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.sel__stat-value small {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-faint);
+  margin-left: 4px;
+}
+
+.sel__stat-label {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-top: 1px;
 }
 </style>
