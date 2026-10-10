@@ -6,7 +6,7 @@ export const config = {
   teamName: 'ทีมระบบยา',
   committeeName: 'คณะกรรมการเภสัชกรรมและการบำบัด (PTC)',
   presenter: 'ภก. สุรเดช ประถมศักดิ์',
-  presentationDate: 'ตุลาคม 2569',
+  presentationDate: '20 ตุลาคม 2569',
   audience: 'ทีมสำรวจ HA / สรพ.',
   standard: 'มาตรฐานโรงพยาบาลและบริการสุขภาพ ฉบับที่ 6',
   totalMinutes: 15,

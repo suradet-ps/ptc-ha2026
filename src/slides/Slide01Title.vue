@@ -35,7 +35,6 @@ import { config } from '@/data/config'
           <p class="title__hospital">{{ config.hospitalName }}</p>
           <p class="title__team">{{ config.teamName }}</p>
           <div class="title__badges">
-            <span class="title__badge">15 นาที</span>
             <span class="title__badge title__badge--gold">HA ฉบับที่ 6</span>
           </div>
         </div>
@@ -47,7 +46,7 @@ import { config } from '@/data/config'
       <span class="title__dot" />
       <span><Icon name="calendar" :size="16" />{{ config.presentationDate }}</span>
       <span class="title__dot" />
-      <span><Icon name="clock" :size="16" />นำเสนอ 14:30 + สำรอง 0:30</span>
+      <span><Icon name="clock" :size="16" />นำเสนอ {{ config.totalMinutes }} นาที</span>
     </div>
 
     <div class="title__strip">
