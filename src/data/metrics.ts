@@ -41,7 +41,8 @@ export const rdu = {
 }
 
 export const drugInventory = {
-  total: 293,
+  /* จำนวนยาปัจจุบันจากระบบ DrugLists ณ ต.ค. 2569 (รายงาน II-6 เดิม 293 รายการ) */
+  total: 306,
   edPercent: 97.61,
   nedPercent: 2.39,
   reservePoints: 2,
