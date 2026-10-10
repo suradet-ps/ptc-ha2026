@@ -2,16 +2,22 @@
 import Icon from '@/components/Icon.vue'
 import SlideLayout from '@/components/SlideLayout.vue'
 import DonutGauge from '@/components/charts/DonutGauge.vue'
-import { rdu } from '@/data/metrics'
+import { medErrorIpd, medErrorOpd, rdu } from '@/data/metrics'
 
 const passedPercent = Math.round((rdu.passed / rdu.total) * 1000) / 10
 const failing = rdu.total - rdu.passed
+
+const mePrescribing = [
+  `ME prescribing 2569* = ${medErrorOpd.prescribing[medErrorOpd.prescribing.length - 1]} (OPD)`,
+  `${medErrorIpd.prescribing[medErrorIpd.prescribing.length - 1]} (IPD)`,
+  `ต่ำกว่าเป้า ≤ ${medErrorOpd.target}`,
+].join(' · ')
 
 const metrics = [
   {
     label: 'ตัวชี้วัด RDU ผ่าน',
     value: `${rdu.passed}/${rdu.total}`,
-    sub: `ร้อยละ ${passedPercent} · ไม่ผ่าน ${failing} ข้อ (${rdu.period})`,
+    sub: `ร้อยละ ${passedPercent} · ไม่ผ่าน ${failing} ข้อ · ${rdu.period}`,
     tone: 'warn',
   },
   {
@@ -66,9 +72,7 @@ const bullets = [
 
         <div class="card card--tint rdu__callout anim anim-4">
           <Icon name="trend-down" :size="17" />
-          <span>
-            ผลลัพธ์: ME prescribing 2567* = 2.01 (OPD) · 1.23 (IPD) ต่ำกว่าเป้า ≤ 5
-          </span>
+          <span>ผลลัพธ์: {{ mePrescribing }}</span>
         </div>
       </div>
 
@@ -92,10 +96,12 @@ const bullets = [
           <div class="rdu__failed">
             <p class="rdu__failed-title">
               <Icon name="alert" :size="15" />
-              ข้อที่ไม่ผ่าน {{ failing }} ข้อ · ข้อมูล ณ {{ rdu.period }}
+              ข้อที่ไม่ผ่าน {{ failing }} ข้อ · ข้อมูล{{ rdu.period }}
             </p>
             <ul class="rdu__failed-list">
-              <li v-for="item in rdu.failedItems" :key="item">{{ item }}</li>
+              <li v-for="item in rdu.failedItems" :key="item.label">
+                {{ item.label }}<b v-if="item.value"> · {{ item.value }}</b>
+              </li>
             </ul>
             <p class="rdu__failed-detail">{{ rdu.failedDetail }}</p>
           </div>
@@ -247,6 +253,11 @@ const bullets = [
   height: 5px;
   border-radius: 50%;
   background: var(--warn);
+}
+
+.rdu__failed-list b {
+  font-weight: 600;
+  color: #9a6a00;
 }
 
 .rdu__failed-detail {

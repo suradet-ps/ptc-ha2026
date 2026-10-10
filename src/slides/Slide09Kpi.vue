@@ -16,22 +16,27 @@ interface KpiRow {
 
 const passedPercent = Math.round((rdu.passed / rdu.total) * 1000) / 10
 
+const opdLatest = medErrorOpd.prescribing[medErrorOpd.prescribing.length - 1]!
+const opdPrev = medErrorOpd.prescribing[medErrorOpd.prescribing.length - 2]!
+const ipdLatest = medErrorIpd.prescribing[medErrorIpd.prescribing.length - 1]!
+const ipdPrev = medErrorIpd.prescribing[medErrorIpd.prescribing.length - 2]!
+
 const rows: readonly KpiRow[] = [
   {
     name: 'ME Prescribing ผู้ป่วยนอก',
     target: '≤ 5 ต่อ 1,000 ใบสั่งยา',
-    result: medErrorOpd.prescribing[4]!.toFixed(2),
+    result: opdLatest.toFixed(2),
     trend: 'down',
-    trendLabel: 'ลดลงจาก 4.35',
+    trendLabel: `ลดลงจาก ${opdPrev.toFixed(2)}`,
     status: 'ผ่าน',
     statusCls: 'ok',
   },
   {
     name: 'ME Prescribing ผู้ป่วยใน',
     target: '≤ 5 ต่อ 1,000 วันนอน',
-    result: medErrorIpd.prescribing[4]!.toFixed(2),
+    result: ipdLatest.toFixed(2),
     trend: 'down',
-    trendLabel: 'ลดลงจาก 2.54',
+    trendLabel: `ลดลงจาก ${ipdPrev.toFixed(2)}`,
     status: 'ผ่าน',
     statusCls: 'ok',
   },
@@ -40,7 +45,7 @@ const rows: readonly KpiRow[] = [
     target: '0 ครั้ง',
     result: '0 ครั้ง',
     trend: 'flat',
-    trendLabel: 'ต่อเนื่อง 5 ปี',
+    trendLabel: 'ต่อเนื่อง 7 ปี',
     status: 'ผ่าน',
     statusCls: 'ok',
   },
@@ -49,7 +54,7 @@ const rows: readonly KpiRow[] = [
     target: '0 ครั้ง',
     result: '0 ครั้ง',
     trend: 'flat',
-    trendLabel: 'ต่อเนื่อง 5 ปี',
+    trendLabel: 'ต่อเนื่อง 7 ปี',
     status: 'ผ่าน',
     statusCls: 'ok',
   },
@@ -130,7 +135,7 @@ const trendIcon = { down: 'trend-down', up: 'trend-up', flat: 'trend-flat' } as 
           <span class="icon-badge icon-badge--ok"><Icon name="shield" :size="18" /></span>
           <div>
             <p class="kpi__stat-value">{{ safetyResults.levelEUp }} <span>ครั้ง</span></p>
-            <p class="kpi__stat-label">ME ระดับ E ขึ้นไป · 5 ปีต่อเนื่อง</p>
+            <p class="kpi__stat-label">ME ระดับ E ขึ้นไป · ต่อเนื่อง 7 ปี</p>
           </div>
         </div>
 

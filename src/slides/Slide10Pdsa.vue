@@ -20,7 +20,7 @@ const steps = [
   {
     key: 'C',
     title: 'Check',
-    detail: 'IPD 0.42 → 0.03 ต่อพันวันนอน (ลด 93%)',
+    detail: 'IPD 0.42 → 0 ต่อพันวันนอน (ลด 100%)',
     tone: 'c',
   },
   {
@@ -33,7 +33,7 @@ const steps = [
 
 const bars = [
   { label: 'ก่อน PDSA (2563)', value: pdsaTranscribing.before, color: '#dc3b38', sub: pdsaTranscribing.unit },
-  { label: 'หลัง PDSA (2567)', value: pdsaTranscribing.after, color: '#1c9e5a', sub: pdsaTranscribing.unit },
+  { label: 'หลัง PDSA (2569*)', value: pdsaTranscribing.after, color: '#1c9e5a', sub: pdsaTranscribing.unit },
 ]
 </script>
 
@@ -72,7 +72,7 @@ const bars = [
       <div class="card pdsa__result anim anim-4">
         <p class="pdsa__result-big">
           <span>-{{ pdsaTranscribing.reduction }}%</span>
-          ผู้ป่วยใน เหลือ 0.03 ต่อพันวันนอน
+          ผู้ป่วยใน เหลือ 0 ต่อพันวันนอน
         </p>
         <ul class="pdsa__result-list">
           <li>

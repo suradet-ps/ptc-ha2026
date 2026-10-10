@@ -61,8 +61,12 @@ function y(v: number): number {
   return padT + innerH.value * (1 - v / maxVal.value)
 }
 
-const rendered = computed(() =>
-  props.series.map((s, si) => {
+const rendered = computed(() => {
+  const lastYs = props.series.map((s) => {
+    const v = s.data[s.data.length - 1]
+    return v === undefined ? Number.NaN : y(v)
+  })
+  return props.series.map((s, si) => {
     const points = s.data.map((v, i) => ({ x: x(i), y: y(v), v }))
     const base = padT + innerH.value
     const first = points[0]
@@ -71,15 +75,21 @@ const rendered = computed(() =>
       si === 0 && points.length > 1 && !multi.value && first && last
         ? `M ${first.x} ${first.y} L ${points.map((p) => `${p.x} ${p.y}`).join(' L ')} L ${last.x} ${base} L ${first.x} ${base} Z`
         : ''
+    const mine = lastYs[si] ?? Number.NaN
+    const collides =
+      multi.value &&
+      Number.isFinite(mine) &&
+      lastYs.some((v, j) => j < si && Number.isFinite(v) && Math.abs(v - mine) < 20)
     return {
       ...s,
       points,
       polyline: points.map((p) => `${p.x},${p.y}`).join(' '),
       area,
       lastPoint: last,
+      labelDx: collides ? -46 : 0,
     }
-  }),
-)
+  })
+})
 
 const targetY = computed(() => (props.target !== undefined ? y(props.target) : null))
 
@@ -182,7 +192,7 @@ const legendItems = computed(() =>
         <circle :cx="p.x" :cy="p.y" r="4.6" fill="#ffffff" :stroke="s.color" stroke-width="2.6" />
         <text
           v-if="!multi || p === s.lastPoint"
-          :x="p.x"
+          :x="p.x + (multi && p === s.lastPoint ? s.labelDx : 0)"
           :y="p.y - 11"
           :text-anchor="p === s.lastPoint && multi ? 'end' : 'middle'"
           font-size="13"
