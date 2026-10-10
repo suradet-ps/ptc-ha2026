@@ -1,0 +1,46 @@
+:root {
+  /* HA / สรพ. brand palette (from ha.or.th and logo usage guide) */
+  --ha-blue: #0d5fa8;
+  --ha-blue-deep: #0a4c86;
+  --ha-blue-dark: #0a3d6b;
+  --ha-navy: #2b3991;
+  --ha-red: #fa0f0c;
+  --ha-red-deep: #d40b09;
+  --ha-gold: #eacc55;
+  --ha-gold-deep: #c9a227;
+
+  /* Neutrals */
+  --ink: #22303f;
+  --ink-strong: #16222e;
+  --ink-soft: #5b6b7b;
+  --ink-faint: #8a97a5;
+  --line: #dde5ee;
+  --line-soft: #eaf0f7;
+  --surface: #ffffff;
+  --surface-tint: #f4f8fc;
+  --surface-blue: #eef5fc;
+
+  /* Status */
+  --ok: #1c9e5a;
+  --ok-soft: #e6f6ed;
+  --warn: #dd8500;
+  --warn-soft: #fdf3e2;
+  --bad: #dc3b38;
+  --bad-soft: #fdecec;
+  --info-soft: #e8f1fa;
+
+  /* Effects */
+  --shadow-card: 0 1px 2px rgba(22, 34, 46, 0.06), 0 8px 24px rgba(13, 95, 168, 0.08);
+  --shadow-pop: 0 14px 44px rgba(8, 32, 58, 0.32);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-xs: 8px;
+
+  /* Type */
+  --font-sans: 'Prompt', 'Noto Sans Thai', 'Thonburi', system-ui, sans-serif;
+
+  /* Deck geometry */
+  --stage-w: 1280px;
+  --stage-h: 720px;
+  --bar-h: 62px;
+}

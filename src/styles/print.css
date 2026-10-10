@@ -1,0 +1,86 @@
+/* PDF export and print layout
+   Recommended: Chrome > Print > Save as PDF, paper size "297mm x 167mm",
+   margins none, background graphics on. */
+
+@page {
+  size: 297mm 167mm;
+  margin: 0;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+@media print {
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  #app {
+    height: auto;
+  }
+
+  .deck {
+    position: static;
+    background: #ffffff;
+  }
+
+  .deck::after,
+  .deck-ui {
+    display: none !important;
+  }
+
+  .stage-area {
+    position: static !important;
+    right: auto !important;
+    inset: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  .fit-wrap {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible;
+    display: block;
+  }
+
+  .fit-stage {
+    position: static !important;
+    zoom: 0.876;
+    width: 1280px !important;
+    height: auto !important;
+    transform: none !important;
+  }
+
+  .slides {
+    position: static !important;
+  }
+
+  .slides .slide {
+    position: relative !important;
+    display: flex !important;
+    border-radius: 0;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .slides .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .slide::before,
+  .slide::after {
+    display: none;
+  }
+
+  .is-active .anim {
+    animation: none !important;
+  }
+}

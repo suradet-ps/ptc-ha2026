@@ -1,0 +1,73 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: #071c30;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+::selection {
+  background: rgba(250, 15, 12, 0.16);
+}
+
+/* Deck background letterbox */
+.deck {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(1100px 640px at 82% -10%, rgba(43, 57, 145, 0.5), transparent 62%),
+    radial-gradient(900px 560px at 6% 108%, rgba(13, 95, 168, 0.45), transparent 60%),
+    linear-gradient(160deg, #061726 0%, #04101b 100%);
+}
+
+.deck::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+}
