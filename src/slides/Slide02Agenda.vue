@@ -11,7 +11,6 @@ interface AgendaItem {
   title: string
   sub: string
   highlight: string
-  slides: string
   time: string
   minutes: number
   color: string
@@ -24,7 +23,6 @@ const items: readonly AgendaItem[] = [
     title: 'Governance',
     sub: 'โครงสร้างการกำกับดูแล',
     highlight: `PTC + รพ.สต. ${hospitalScale.subDistricts} แห่ง`,
-    slides: 'สไลด์ 3',
     time: '1:30',
     minutes: 1.5,
     color: '#0d5fa8',
@@ -35,7 +33,6 @@ const items: readonly AgendaItem[] = [
     title: 'Selection & Procurement',
     sub: 'บัญชียา จัดหา สำรองยา',
     highlight: `ยา ${drugInventory.total} รายการ`,
-    slides: 'สไลด์ 4',
     time: '1:30',
     minutes: 1.5,
     color: '#2b3991',
@@ -46,7 +43,6 @@ const items: readonly AgendaItem[] = [
     title: 'Safety & RDU',
     sub: 'ความปลอดภัย · AMS',
     highlight: `HAD ${highAlert.total} รายการ`,
-    slides: 'สไลด์ 5-6',
     time: '3:30',
     minutes: 3.5,
     color: '#fa0f0c',
@@ -57,7 +53,6 @@ const items: readonly AgendaItem[] = [
     title: 'Digital Health',
     sub: 'HOSxP · Scan Order',
     highlight: 'แผน AI ≥ 80%',
-    slides: 'สไลด์ 7',
     time: '1:30',
     minutes: 1.5,
     color: '#0e72cb',
@@ -68,7 +63,6 @@ const items: readonly AgendaItem[] = [
     title: '3P Safety',
     sub: 'Patient · Personnel · Public',
     highlight: 'ครอบคลุม 3 มิติ',
-    slides: 'สไลด์ 8',
     time: '1:00',
     minutes: 1,
     color: '#c9a227',
@@ -79,7 +73,6 @@ const items: readonly AgendaItem[] = [
     title: 'KPI & PDSA',
     sub: 'ผลลัพธ์และแผนพัฒนา',
     highlight: 'ME ระดับ E = 0',
-    slides: 'สไลด์ 9-12',
     time: '4:15',
     minutes: 4.25,
     color: '#1c9e5a',
@@ -109,12 +102,11 @@ const totalLabel = `${Math.floor(config.plannedMinutes)}:${String(
         >
           <div class="ag__node">
             <span class="ag__no">{{ item.no }}</span>
-            <Icon :name="item.icon" :size="30" />
+            <Icon :name="item.icon" :size="32" />
           </div>
           <h3 class="ag__title">{{ item.title }}</h3>
           <p class="ag__sub">{{ item.sub }}</p>
           <span class="ag__hl">{{ item.highlight }}</span>
-          <p class="ag__meta">{{ item.slides }} · {{ item.time }} นาที</p>
           <span v-if="i < items.length - 1" class="ag__arrow">
             <Icon name="chevron-right" :size="15" />
           </span>
@@ -133,11 +125,6 @@ const totalLabel = `${Math.floor(config.plannedMinutes)}:${String(
             <em>{{ item.time }}</em>
           </span>
         </div>
-        <div class="ag__legend">
-          <span><b>14:30</b> นำเสนอ</span>
-          <span><b>0:30</b> สำรองคำถาม</span>
-          <span><b>15:00</b> รวมทั้งหมด</span>
-        </div>
       </div>
     </div>
   </SlideLayout>
@@ -150,7 +137,7 @@ const totalLabel = `${Math.floor(config.plannedMinutes)}:${String(
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 22px;
+  gap: 34px;
 }
 
 .ag {
@@ -183,8 +170,8 @@ const totalLabel = `${Math.floor(config.plannedMinutes)}:${String(
 .ag__node {
   position: relative;
   z-index: 1;
-  width: 76px;
-  height: 76px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -211,7 +198,7 @@ const totalLabel = `${Math.floor(config.plannedMinutes)}:${String(
 }
 
 .ag__title {
-  margin-top: 14px;
+  margin-top: 16px;
   font-size: 17px;
   font-weight: 600;
   color: var(--ink-strong);
@@ -226,7 +213,7 @@ const totalLabel = `${Math.floor(config.plannedMinutes)}:${String(
 }
 
 .ag__hl {
-  margin-top: 10px;
+  margin-top: 12px;
   display: inline-flex;
   align-items: center;
   padding: 4px 12px;
@@ -239,16 +226,9 @@ const totalLabel = `${Math.floor(config.plannedMinutes)}:${String(
   white-space: nowrap;
 }
 
-.ag__meta {
-  margin-top: 8px;
-  font-size: 12px;
-  color: var(--ink-faint);
-  font-variant-numeric: tabular-nums;
-}
-
 .ag__arrow {
   position: absolute;
-  top: 33px;
+  top: 31px;
   right: -13px;
   z-index: 2;
   width: 22px;
@@ -269,43 +249,29 @@ const totalLabel = `${Math.floor(config.plannedMinutes)}:${String(
 .ag__track {
   display: flex;
   gap: 4px;
-  height: 40px;
+  height: 44px;
 }
 
 .ag__seg {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  border-radius: 9px;
+  gap: 8px;
+  border-radius: 10px;
   color: #ffffff;
   box-shadow: inset 0 -6px 14px rgba(0, 0, 0, 0.12);
 }
 
 .ag__seg b {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .ag__seg em {
   font-style: normal;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 500;
   opacity: 0.9;
-  font-variant-numeric: tabular-nums;
-}
-
-.ag__legend {
-  margin-top: 9px;
-  display: flex;
-  justify-content: center;
-  gap: 34px;
-  font-size: 13px;
-  color: var(--ink-soft);
-}
-
-.ag__legend b {
-  color: var(--ink-strong);
   font-variant-numeric: tabular-nums;
 }
 </style>
