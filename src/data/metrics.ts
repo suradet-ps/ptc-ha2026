@@ -1,98 +1,77 @@
-/* ข้อมูลตัวอย่างสำหรับสาธิตการนำเสนอ
-   ต้องแทนที่ด้วยตัวเลขจริงจากรายงาน KPI ของโรงพยาบาลก่อนนำเสนอจริง */
+/* ข้อมูลจริงจากเอกสารของโรงพยาบาล
+   ที่มา: รายงาน II-6 ระบบการจัดการด้านยา และเอกสารตอบข้อเสนอแนะ สรพ. (19-20 ก.พ. 2568)
+   ข้อมูล ณ 31 มี.ค. 2567 (คอลัมน์ 2567* เป็นข้อมูลบางส่วนของปี) */
 
-export const medicationError = {
+export const dataNote =
+  'ข้อมูล ณ 31 มี.ค. 2567 · ที่มา: รายงาน II-6 ระบบการจัดการด้านยา และเอกสารตอบข้อเสนอแนะ สรพ.'
+
+export const years = ['2563', '2564', '2565', '2566', '2567*']
+
+export const medErrorOpd = {
+  unit: 'ต่อ 1,000 ใบสั่งยา',
+  target: 5,
+  prescribing: [3.14, 2.12, 4.12, 4.35, 2.01],
+  transcribing: [0.65, 0.34, 0.12, 0.11, 0.08],
+  preDispensing: [7.52, 6.23, 7.45, 8.45, 3.21],
+  dispensing: [1.04, 0.54, 0.45, 0.34, 0.12],
+  administration: [0, 0, 0, 0, 0],
+}
+
+export const medErrorIpd = {
   unit: 'ต่อ 1,000 วันนอน',
-  years: ['2564', '2565', '2566', '2567', '2568'],
-  series: [6.8, 5.9, 4.6, 3.3, 2.4],
-  target: 3.0,
-  targetLabel: 'เป้าหมาย < 3.0',
-  latest: 2.4,
+  target: 5,
+  prescribing: [1.44, 1.34, 2.01, 2.54, 1.23],
+  transcribing: [0.42, 0.21, 0.06, 0.05, 0.03],
+  preDispensing: [6.54, 5.14, 6.23, 7.12, 2.14],
+  dispensing: [1.21, 0.84, 0.56, 0.21, 0.08],
+  administration: [0.69, 0.65, 0.54, 0.46, 0.21],
 }
 
-export const adrReports = {
-  unit: 'ราย/ปี',
-  years: ['2564', '2565', '2566', '2567', '2568'],
-  series: [28, 33, 38, 42, 47],
-  target: 40,
-  targetLabel: 'เป้าหมาย ≥ 40',
-  latest: 47,
+export const safetyResults = {
+  levelEUp: 0,
+  repeatedAllergy: 0,
+  rcaRate: 100,
 }
 
-export const rduScore = {
-  unit: '%',
-  years: ['2564', '2565', '2566', '2567', '2568'],
-  series: [54, 58, 61, 65, 68],
-  target: 70,
-  targetLabel: 'เป้าหมาย ≥ 70%',
-  latest: 68,
+export const rdu = {
+  total: 12,
+  passed: 11,
+  failedItem: 'ผู้ป่วยความดันโลหิตสูงที่ใช้ RAS blockade 2 ชนิดร่วมกัน',
+  failedDetail:
+    'วิเคราะห์พบผู้ป่วย 1 ราย แพทย์เปลี่ยนยาใน visit เดียวกัน (Enalapril เป็น Losartan) ระบบ HDC นับเป็นการใช้ 2 ชนิด อยู่ระหว่างประสานงานสารสนเทศแก้ไขข้อมูล',
 }
 
-export const antibioticDdd = {
-  unit: 'DDD/1,000 วันนอน',
-  years: ['2564', '2565', '2566', '2567', '2568'],
-  series: [42.5, 39.8, 36.4, 33.9, 31.6],
-  latest: 31.6,
-  change: -25.6,
+export const drugInventory = {
+  total: 293,
+  edPercent: 97.61,
+  nedPercent: 2.39,
+  reservePoints: 2,
+  emergencyBoxes: 2,
+  stockCheck: 'เภสัชกรตรวจร่วมกับพยาบาลเดือนละ 1 ครั้ง และพยาบาลตรวจเช็คทุกวัน',
 }
 
-export const drugShortage = {
-  unit: 'วัน',
-  years: ['2564', '2565', '2566', '2567', '2568'],
-  series: [4.6, 3.8, 3.1, 2.4, 1.8],
-  target: 3,
-  targetLabel: 'เป้าหมาย ≤ 3 วัน',
-  latest: 1.8,
+export const highAlert = {
+  total: 14,
+  level1Count: 3,
+  level1: ['Norepinephrine inj.', 'KCl inj.', 'rt-PA (Alteplase)'],
+  level2Count: 11,
 }
 
-export const highAlertCompliance = {
-  unit: '%',
-  latest: 98.5,
-  target: 100,
-}
-
-export const amsCompliance = {
-  unit: '%',
-  years: ['2564', '2565', '2566', '2567', '2568'],
-  series: [72, 78, 83, 88, 92],
-  latest: 92,
-}
-
-export const pdsa = {
-  title: 'ลดความคลาดเคลื่อนยาระดับรุนแรงในยากลุ่ม High Alert',
-  before: 4.8,
-  after: 1.7,
-  reduction: 64,
-  period: 'ต.ค. 2567 - มี.ค. 2568',
+export const pdsaTranscribing = {
+  title: 'ลด Transcribing error ด้วย Scan Order และเภสัชกรคัดลอกคำสั่ง',
+  before: 0.42,
+  after: 0.03,
+  reduction: 93,
   unit: 'ต่อ 1,000 วันนอน',
+  period: '2563 - 2567',
+  opdBefore: 0.65,
+  opdAfter: 0.08,
 }
 
-export const casePolypharmacy = {
-  title: 'ลดความคลาดเคลื่อนทางยาในผู้ป่วยสูงอายุ',
-  errorBefore: 6.2,
-  errorAfter: 2.6,
-  reduction: 58,
-  period: '6 เดือน',
-  unit: 'ต่อ 1,000 วันนอน',
-}
-
-export const caseTelepharmacy = {
-  title: 'Telepharmacy สู่ รพ.สต. เครือข่าย',
-  adherenceBefore: 58,
-  adherenceAfter: 82,
-  stations: 12,
-  period: '12 เดือน',
-}
-
-export const medRec = {
-  admission: 100,
-  transfer: 100,
-  discharge: 100,
-}
-
-export const medicationSafety = {
-  highAlertUnits: 14,
-  lasaPairs: 23,
-  adrReports: 47,
-  nearMissReports: 63,
+export const hospitalScale = {
+  pharmacists: 3,
+  pharmacyStaffTotal: 7,
+  subDistricts: 5,
+  opdPrescriptions: 64982,
+  ipdPatientDays: 5441,
 }

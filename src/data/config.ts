@@ -17,6 +17,6 @@ export const config = {
     email: 'pharmacy@hospital.go.th',
   },
   /* แสดงป้าย "ข้อมูลตัวอย่าง" ในสไลด์ที่อ้างอิงตัวเลข KPI
-     ตั้งเป็น false เมื่อกรอกข้อมูลจริงของโรงพยาบาลแล้ว */
-  showDemoBadge: true,
+     ปัจจุบันใช้ข้อมูลจริงจากรายงานของโรงพยาบาลแล้ว จึงปิดป้ายไว้ */
+  showDemoBadge: false,
 } as const
