@@ -13,6 +13,13 @@ html {
 }
 
 @media print {
+  /* Chrome's PDF export paints blurred box-shadows as hard offset plates,
+     which read as stray frames around every card. Print stays flat and
+     lets the hairlines do the work. */
+  * {
+    box-shadow: none !important;
+  }
+
   html,
   body {
     height: auto;
@@ -65,6 +72,10 @@ html {
   .slides .slide {
     position: relative !important;
     display: flex !important;
+    /* 1280px at zoom 0.876 lands a hair short of the 297mm page, leaving a
+       1px white line on the right edge of dark slides. Two px of bleed keep
+       the edge covered without disturbing the vertical fit. */
+    width: calc(var(--stage-w) + 2px) !important;
     border-radius: 0;
     page-break-after: always;
     break-after: page;
