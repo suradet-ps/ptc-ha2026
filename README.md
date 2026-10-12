@@ -1,131 +1,147 @@
-# ptc-ha2026
+# PTC HA 2026
 
-สไลด์นำเสนอ **ระบบยาโรงพยาบาล ตามมาตรฐานโรงพยาบาลและบริการสุขภาพ ฉบับที่ 6**
-สำหรับนำเสนอต่อทีมสำรวจ HA / สรพ. ภายใน 15 นาที (14:30 นำเสนอ + 0:30 สำรองคำถาม)
-จำนวน 13 สไลด์ ออกแบบตามแนวทาง **1 สไลด์ = 1 Key Message** เน้นระบบ ผลลัพธ์ และหลักฐาน
+[![Vue v3](https://img.shields.io/badge/Vue-v3-4FC08D.svg?logo=vuedotjs&logoColor=white)](https://vuejs.org/)
+[![TypeScript v5](https://img.shields.io/badge/TypeScript-v5-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite v8](https://img.shields.io/badge/Vite-v8-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Deploy: Vercel](https://img.shields.io/badge/Deploy-Vercel-000000.svg?logo=vercel&logoColor=white)](https://vercel.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/suradet-ps/ptc-ha2026/issues)
 
-สร้างด้วย Vue 3 + TypeScript + Vite (ไม่ใช้ CSS framework) ธีมสีตามแบรนด์ของ สรพ.
-(น้ำเงิน #0D5FA8 · แดง #FA0F0C · ทอง #EACC55 · ฟอนต์ Prompt)
+---
 
-## จุดเด่น
+## ◆ PULSE
 
-- สไลด์ขนาดคงที่ 16:9 (1280x720) ย่อขยายพอดีกับทุกหน้าจออัตโนมัติ ไม่มี scroll
-- นำเสนอด้วยคีย์บอร์ดหรือเมาส์ พร้อมแถบควบคุมและแถบความคืบหน้า
-- โหมด **โน้ตผู้บรรยาย** แสดง script, เวลาที่ควรอยู่, หลักฐานที่ต้องเตรียมของแต่ละสไลด์
-- **จับเวลา** เทียบกับแผนเวลาสะสมของแต่ละสไลด์ (เขียว = ตามแผน, เหลือง = เริ่มช้า, แดง = ช้าเกิน 2:30 นาที)
-- **ภาพรวมสไลด์** ทั้ง 13 หน้า (คลิกเพื่อข้ามได้)
-- **Export PDF** ขนาด 297mm x 167mm หน้าละ 1 สไลด์ พร้อมใช้เป็นไฟล์สำรอง
-- กราฟและไอคอนวาดด้วย SVG เองทั้งหมด ไม่พึ่งพาไลบรารีภายนอก
-- Deep link ไปยังสไลด์ที่ต้องการได้ เช่น `#/5?panel=notes` เปิดสไลด์ 5 พร้อมโน้ต
+A surveyor reads the system, not the slides. PTC HA 2026 is the
+medication system (ระบบยา) of Sabot Hospital presented to the HA / สรพ.
+survey team in fifteen minutes: thirteen slides, one key message each,
+each slide carrying its clause from the 6th edition of the standard
+(II-6), each claim carrying its evidence and its script. The numbers
+are the hospital's own - RDU passing 9 of 12, prescribing errors down
+to 0.09 per 1,000 OPD prescriptions, Level E and repeated allergy at
+zero for seven straight years. The deck is built to be driven from a
+keyboard, timed against the plan, and printed as a PDF for the day the
+projector disagrees.
 
-## เริ่มต้นใช้งาน
+| 13 slides ▣ | One key message each ▣ | Notes + evidence ▣ | PDF fallback ▣ |
+|---|---|---|---|
 
-```bash
-bun install
-bun run dev        # เปิด http://localhost:5173
-bun run build      # ตรวจ types แล้ว build ลง dist/
-bun run preview    # ทดสอบไฟล์ build
-bun run typecheck  # ตรวจ TypeScript อย่างเดียว
+*v1.0.0 - the deck, the notes, and the print are sealed; the survey room waits.*
+
+> Built with Vue 3 + TypeScript + Vite, dressed in the สรพ. palette and
+> the Prompt face - no CSS framework, no chart library, every graph and
+> icon drawn in-house.
+>
+> **suradet-ps**, artifact keeper
+
+---
+
+## ◆ IGNITION
+
+One runtime, two commands.
+
+```
+⟫ bun install
+⟫ bun run dev        # http://localhost:5173
 ```
 
-## การนำเสนอ
+The release artifact: `⟫ bun run build` - `vue-tsc` type-checks first,
+then Vite writes `dist/`.
 
-| คีย์ | การทำงาน |
+<details>
+<summary>Presenter controls</summary>
+
+| Key | Action |
 |---|---|
-| `→` / `Space` / `PageDown` | สไลด์ถัดไป |
-| `←` / `PageUp` | สไลด์ก่อนหน้า |
-| `Home` / `End` | สไลด์แรก / สไลด์สุดท้าย |
-| `1` - `9` (กดต่อเนื่อง) | ข้ามไปสไลด์ที่ต้องการ เช่น `1` `2` = สไลด์ 12 |
-| `S` หรือ `N` | เปิด/ปิดโน้ตผู้บรรยาย |
-| `O` | ภาพรวมสไลด์ทั้งหมด |
-| `F` | เต็มหน้าจอ |
-| `T` | เริ่ม/หยุดจับเวลา (ดับเบิลคลิกที่ปุ่มเวลาเพื่อรีเซ็ต) |
-| `?` | หน้าคีย์ลัด |
-| `Esc` | ปิดหน้าต่างซ้อน |
+| `→` / `Space` / `PageDown` | next slide |
+| `←` / `PageUp` | previous slide |
+| `Home` / `End` | first / last slide |
+| `1` - `9` (typed in sequence) | jump to a slide, e.g. `1` `2` = slide 12 |
+| `S` or `N` | toggle the presenter notes |
+| `O` | slide overview |
+| `F` | full screen |
+| `T` | start / stop the timer (double-click to reset) |
+| `?` | shortcut help |
+| `Esc` | close any overlay |
 
-ตัวจับเวลาจะเริ่มอัตโนมัติเมื่อเลื่อนออกจากสไลด์แรกครั้งแรก
+The timer arms itself on the first step away from slide one.
 
-## ข้อมูลที่ใช้ในสไลด์
+</details>
 
-สไลด์ใช้ **ข้อมูลจริงของโรงพยาบาลสระโบสถ์** จากเอกสารต่อไปนี้
+<details>
+<summary>Deploying to Vercel</summary>
 
-- รายงานตัวชี้วัดโรงพยาบาล ปี 2569 (ต.ค. 2568 - มิ.ย. 2569) — ตาราง RDU, Medication Error และผลลัพธ์ระบบยา
-- รายงาน II-6 ระบบการจัดการด้านยา (บริบท คะแนน และตารางผลลัพธ์ Medication Error ปี 2563 - 2567)
-- เอกสารตอบข้อเสนอแนะ สรพ. รอบสำรวจ 19-20 ก.พ. 2568 (แผน CQI 3 ฉบับ)
+`vercel.json` is wired for a plain Vite deploy - framework `vite`,
+build `bun run build`, output `dist`.
 
-คอลัมน์ 2569* ใช้ข้อมูลปี 2569 ตั้งแต่ ต.ค. 2568 ถึง มิ.ย. 2569
+```
+⟫ bunx vercel        # preview
+⟫ bunx vercel --prod # production
+```
 
-| ไฟล์ | ข้อมูลที่แก้ |
-|---|---|
-| `src/data/config.ts` | ชื่อโรงพยาบาล ทีม ผู้นำเสนอ วันที่ เบอร์โทร อีเมล |
-| `src/data/metrics.ts` | ตัวเลข KPI และชุดข้อมูลกราฟทุกตัว (มี comment ระบุที่มา) |
-| `src/data/deck.ts` | หัวข้อสไลด์ Key Message เวลา Script ผู้บรรยาย และรายการหลักฐาน |
+Or connect the `suradet-ps/ptc-ha2026` repository to Vercel directly.
 
-> เมื่อมีข้อมูลปีใหม่กว่า 2569 ให้อัปเดต `src/data/metrics.ts` และแก้ปีในตัวแปร `years`
-> รวมถึงข้อความ footnote ที่อ้างอิงปีในสไลด์ 5, 9 และ 10
+</details>
 
-## การเชื่อมโยงมาตรฐาน (II-6)
+---
 
-ทุกสไลด์แสดงข้ออ้างอิงมาตรฐานโรงพยาบาลและบริการสุขภาพ ฉบับที่ 6 ท้ายสไลด์
-และในโน้ตผู้บรรยาย (แก้ไขได้ที่ฟิลด์ `standardRef` ใน `src/data/deck.ts`)
+## ◆ ANATOMY
 
-| สไลด์ | ข้ออ้างอิง | ข้อกำหนด |
+One stage, thirteen slides, and a clock that keeps the room honest.
+
+- **Presents** - a fixed 16:9 stage (1280x720) scaled to any screen by
+  `FitStage`; no scrolling, no surprises. Hash routing makes every slide
+  a deep link - `#/5?panel=notes` opens slide five with the notes
+  already out.
+- **Notes** - the presenter panel holds each slide's script, its planned
+  minutes, and its evidence checklist - preparation kept off-stage until
+  the question arrives.
+- **Times** - the presenter bar counts against the cumulative plan:
+  green on plan, yellow drifting, red beyond 2:30 late.
+- **Prints** - `Ctrl / Cmd + P` yields 297mm x 167mm pages, one slide
+  each - the paper fallback for a projector emergency.
+- **Draws** - charts and icons are hand-drawn SVG
+  (`src/components/charts/`); the Prompt font is self-hosted; nothing is
+  fetched at runtime.
+- **Dresses** - the palette follows สรพ.'s own (น้ำเงิน `#0D5FA8` · แดง
+  `#FA0F0C` · ทอง `#EACC55`), and the real Sabot Hospital logo anchors
+  the title, the bar, and the favicon.
+- **Holds** - the content lives in `src/data/`: `config.ts` for identity
+  and contacts, `deck.ts` for titles, key messages, script, standard
+  references, and evidence, `metrics.ts` for every number and chart
+  series, each with its source in a comment.
+
+Every slide cites its standard clause in the footer and in the notes
+(`standardRef` in `src/data/deck.ts`):
+
+| Slide | Clause | Requirement |
 |---|---|---|
-| 3 Governance | II-6.1 ก (1) | PTC ออกแบบและกำกับดูแลระบบการจัดการด้านยา |
-| 4 Selection | II-6.1 ค | การจัดหาและเก็บรักษายา (บัญชียา ยาขาด ยาฉุกเฉิน ห้องยาปิด) |
-| 5 Safety | II-6.1 ก (1)(v) · II-6.2 ก (2) | ยาความเสี่ยงสูง · Medication Reconciliation |
-| 6 RDU / AMS | II-6.1 ก (2) | แผนงาน RDU และ AMS |
-| 7 Digital Health | II-6.1 ข (4) · II-6.2 ก (3) | ระบบคอมพิวเตอร์สนับสนุนการตัดสินใจ · CPOE |
-| 8 3P Safety | II-6.1 ข (1) · II-6.2 ค | อบรมผู้ประกอบวิชาชีพ · บริหารยาและให้ข้อมูลยา |
-| 9 KPI Dashboard | II-6.1 ก (3) | ติดตามตัวชี้วัดกระบวนการและผลลัพธ์ |
-| 10 PDSA | II-6.2 ก | การสั่งใช้และถ่ายทอดคำสั่ง |
-| 11 Case Study | II-6.1 ก (1)(i) · (3) | ระบบยาที่มีประสิทธิผล · นวัตกรรม/เทคโนโลยีระบบยา |
-| 12 Roadmap | II-6.1 ก (1)(iv) | นโยบายป้องกันความคลาดเคลื่อนทางยาและตรวจสอบการปฏิบัติ |
+| 3 Governance | II-6.1 ก (1) | PTC designs and governs the medication system |
+| 4 Selection | II-6.1 ค | Drug list, shortages, emergency drugs, closed pharmacy |
+| 5 Safety | II-6.1 ก (1)(v) · II-6.2 ก (2) | High-alert drugs · medication reconciliation |
+| 6 RDU / AMS | II-6.1 ก (2) | RDU and AMS programs |
+| 7 Digital Health | II-6.1 ข (4) · II-6.2 ก (3) | Decision support · CPOE |
+| 8 3P Safety | II-6.1 ข (1) · II-6.2 ค | Staff training · dispensing and drug information |
+| 9 KPI Dashboard | II-6.1 ก (3) | Process and outcome indicators |
+| 10 PDSA | II-6.2 ก | Ordering and order transcription |
+| 11 Case Study | II-6.1 ก (1)(i) · (3) | An effective system · innovation in medication |
+| 12 Roadmap | II-6.1 ก (1)(iv) | Error prevention policy and its audit |
 
-## Export PDF (ไฟล์สำรอง)
+---
 
-1. เปิดสไลด์ใน Chrome แล้วกด `Ctrl / Cmd + P`
-2. เลือก **Save as PDF**
-3. ขนาดกระดาษ **297mm x 167mm**, Margins **None**, เปิด **Background graphics**
-4. ได้ไฟล์ 13 หน้า หน้าละ 1 สไลด์พอดี
+## ◆ RITUALS
 
-## Deploy ขึ้น Vercel
+**The core ceremony** - the fifteen minutes:
 
-Repo นี้ตั้งค่าพร้อม deploy แล้ว (Vercel ตรวจ Vite อัตโนมัติ)
+1. Open the deck; the timer arms itself when slide one is left behind.
+2. Advance with `→` / `Space`; the bar answers with position and drift.
+3. `S` for the notes when a slide needs its script or its evidence
+   checklist; `O` to see where the deck is going; `?` when a key is
+   forgotten.
+4. `T` stops the clock. The buffer is part of the plan, not an accident.
 
-```bash
-bunx vercel        # deploy preview
-bunx vercel --prod # deploy production
-```
+<details>
+<summary>The 15-minute plan</summary>
 
-หรือเชื่อม GitHub repo `suradet-ps/ptc-ha2026` กับ Vercel โดยตรง
-(Build command: `bun run build`, Output: `dist`)
-
-## โครงสร้างโปรเจกต์
-
-```
-src/
-├── App.vue                  # deck shell: navigation, timer, panels, print
-├── router.ts                # hash routing (#/1 - #/13)
-├── main.ts                  # entry + ฟอนต์ Prompt (self-hosted)
-├── components/
-│   ├── SlideLayout.vue      # โครงสไลด์มาตรฐาน (header, key message, footer)
-│   ├── FitStage.vue         # ย่อขยายสไลด์ 1280x720 ให้พอดีหน้าจอ
-│   ├── PresenterBar.vue     # แถบควบคุม + จับเวลา
-│   ├── NotesPanel.vue       # โน้ตผู้บรรยาย
-│   ├── OverviewGrid.vue     # ภาพรวมสไลด์
-│   ├── HelpOverlay.vue      # คีย์ลัด
-│   ├── Icon.vue, icons.ts   # ไอคอน SVG
-│   └── charts/              # กราฟ SVG (TrendChart, BarCompare, DonutGauge)
-├── slides/                  # สไลด์ 01 - 13
-├── data/                    # config, deck metadata, metrics
-├── styles/                  # tokens, base, slides, print
-└── composables/useTimer.ts
-```
-
-## แผนเวลา 15 นาที
-
-| สไลด์ | หัวข้อ | เวลา | สะสม |
+| # | Slide | Time | Cumulative |
 |---|---|---|---|
 | 1 | Title | 0:30 | 0:30 |
 | 2 | Agenda | 0:30 | 1:00 |
@@ -142,9 +158,52 @@ src/
 | 13 | Thank You & Q&A | 0:15 | 14:30 |
 | - | Buffer | 0:30 | 15:00 |
 
-## หมายเหตุด้านดีไซน์
+</details>
 
-- ชุดสีและอารมณ์ของสไลด์อ้างอิงจากเว็บไซต์สถาบันรับรองคุณภาพสถานพยาบาล (สรพ.)
-  ha.or.th ทั้งโทนสี ฟอนต์ Prompt และลวดลายเส้นใต้สีแดงบนหัวข้อ
-- ตราสัญลักษณ์เป็นโลโก้จริงของโรงพยาบาลสระโบสถ์ที่ `public/images/logo.png`
-  (ย่อขนาด 512px เพื่อลดขนาดไฟล์) ใช้ผ่าน component `LogoMark.vue` ทั้งสไลด์ ปก แถบควบคุม และ favicon
+**The ceremony of the evidence** - every claim on a slide maps to a
+document the survey team can ask for: appointment orders, PTC minutes,
+NRLS reports, RCA files, CQI plans. The checklist lives beside the
+script, not in someone's memory.
+
+**The ceremony of the numbers** - the deck carries the hospital's real
+indicators, not demo figures: the 2569 report (ต.ค. 2568 - มิ.ย. 2569),
+the II-6 medication-system report, and the สรพ. feedback response of
+19-20 Feb 2568. When a newer report lands, `src/data/metrics.ts` is the
+single edit - plus the `years` array and the year footnotes on slides
+5, 9, and 10.
+
+**The ceremony of the paper** - before the room, print the deck: Chrome,
+Save as PDF, 297mm x 167mm, margins None, background graphics on -
+thirteen pages, one slide each, the fallback that never fails.
+
+---
+
+## ◆ ECHOES
+
+**Where this artifact is heading**
+
+```
+stage    ▸ fixed 16:9, fit to any screen, no scroll ───────────────── ▸ sealed
+notes    ▸ script, plan time, evidence per slide ──────────────────── ▸ sealed
+timing   ▸ cumulative plan, green / yellow / red ──────────────────── ▸ sealed
+print    ▸ 297mm x 167mm, one slide per page ──────────────────────── ▸ sealed
+survey   ▸ 20 October 2026, the room itself ───────────────────────── ▸ open
+```
+
+**Raising the artifact** - the design tokens live in
+`src/styles/tokens.css`, the slides in `src/slides/`, the shell in
+`src/App.vue`; `vercel.json` carries the deploy. Open an issue first to
+discuss a change.
+
+**Status** - the gate is the local build: `bun run build` type-checks
+with `vue-tsc` before Vite writes `dist/`; Vercel deploys what the build
+accepts.
+
+---
+
+```
+  ─────────────────────────────────────────
+   The survey team reads the system.
+   The slides only testify.
+  ─────────────────────────────────────────
+```
